@@ -6,9 +6,20 @@ Project Salieri AI Public v0.1の外部Dependencyについて、Validation環境
 
 ## 判定
 
+Dependency verification:
+
 - `CONFIRMED`: Version、実ファイル、SHA-256、実使用根拠が揃っている。
 - `UNCONFIRMED`: 実ファイルや使用は確認できるが、exact version / archive provenance / build manifestのいずれかが不足している。
 - `NOT FOUND`: 元archive、manifest、build record等が見つからない。
+
+Project-specific native provenance:
+
+- `CONFIRMED OWN`: Studio Hazama 714の独自Source、所有根拠、build provenanceが確認できる。
+- `CONFIRMED OWN-DEPENDENT`: Studio Hazama 714の独自wrapper/integration Sourceで、第三者API・library・headerへ依存する。
+- `CONFIRMED MODIFIED THIRD-PARTY`: 元SourceとLicenseが特定でき、第三者Sourceを改変したことが確認できる。
+- `UNKNOWN / NOT FOUND`: Binary lineageは追えても、Native Source・作者・build recipe等を確認できない。
+
+これらは技術的なprovenance判定であり、最終的な法的判断ではありません。
 
 ## Confirmed validation fingerprints
 
@@ -74,7 +85,124 @@ SHA-1はProjectで使用しているOpenCV for Unity downloader定義と一致�
 
 Public RepositoryにはR8 JARを含めません。
 
-## Unconfirmed items and resolution procedure
+## Native integration provenance audit
+
+### Windows `voicevox_unity_bridge.dll`
+
+Status: `UNKNOWN / NOT FOUND`
+
+Current binary:
+
+- Size: `312,320` bytes
+- SHA-256: `0D93047EF46047854ED00F0F009DC9B042C68C417E421B8657C3CF9D1AA5C94B`
+- PE32+ / x86-64 Windows DLL
+- Managed wrapper uses `Cdecl`
+- Direct imports: `voicevox_core.dll`, `KERNEL32.dll`
+- Exports:
+  - `voicevox_unity_initialize`
+  - `voicevox_unity_tts_to_file`
+  - `voicevox_unity_shutdown`
+  - `voicevox_unity_get_last_error`
+  - `voicevox_unity_get_core_version`
+
+確認できたlineage:
+
+- AITuber_PCDev系に保存されていた`voicevox_unity_bridge.dll`とProduction BinaryはSHA-256完全一致。
+- 保存Binaryの最初の確認可能な作成時期は2026-06-23、Project Salieri Productionへの配置は2026-07-19。
+- この一致はBinaryコピー系譜を示すが、Native Sourceの作者・権利を確定する証拠ではない。
+
+未発見:
+
+- `.cpp` / `.c` / `.h` Native Source
+- CMake / Visual Studio build project
+- build script
+- PDB / MAP / import library
+- Native author record
+- compiler flags / CRT setting
+
+PE linker versionはMSVC/Visual Studio 2022世代と整合しますが、正確なcompiler、edition、flagsは不明です。`VCRUNTIME140.dll`や`MSVCP140.dll`へのDynamic Importは確認されずstatic CRTと整合しますが、`/MT`を断定しません。
+
+判定:
+
+- Origin: `UNKNOWN`
+- Exact Build Match: `NOT TESTABLE`
+- Rebuild Reproducibility: `NOT READY`
+- Source Distribution: `REVIEW REQUIRED`
+- Binary Redistribution: `REVIEW REQUIRED`
+
+Public v0.1ではこのBinaryを収録せず、「Public SourceからWindows VOICEVOX bridgeを再構築可能」とも表明しません。元Source / build project / rightsが閉じるまで再配布しません。
+
+### Android `libvoicevox_runtime.so`
+
+Status: `CONFIRMED OWN-DEPENDENT`
+
+Current binary:
+
+- Size: `6,016,248` bytes
+- SHA-256: `F1190908EFC5FC5BB60E4FF748E8AFBB8FC0EF052ACC829E544752CC39CF5CC5`
+- ELF64 / AArch64 shared object
+- SONAME: `libvoicevox_runtime.so`
+- GNU Build ID: `e6ed7165fb2a260fa6e73291cc4ba3174e839564`
+- Build type: Debug
+- Production binary is unstripped and contains debug/symbol sections
+
+Source/build provenance:
+
+- 別管理のAndroid Studio `VoiceVoxRuntime` projectにwrapper Native Sourceを確認。
+- Source SHA-256: `D0D9D2DA1943C41494D365D434579559CF9E21FF1C2CFA7E9EE48E159F1242D0`
+- CMake / Gradle / generated build metadataを確認。
+- BOOTH向け既存notice資料でwrapper Source/BinaryがHazama KaizukaのOriginal Integration Componentとして記録されている。
+- 第三者Sourceをwrapper implementationへコピーした証拠は確認されていない。
+- `voicevox_core.h`は公式VOICEVOX Core由来の第三者Headerとして分離して扱う。
+
+Toolchain observed from build metadata/output:
+
+- Android NDK: `28.2.13676358` (`r28c`)
+- Clang: `19.0.1`
+- CMake: `3.22.1`
+- Gradle wrapper: `9.4.1`
+- Android Gradle Plugin: `9.2.1`
+- Minimum Android API: `26`
+- ABI: `arm64-v8a`
+- STL link flag: `-static-libstdc++`
+
+Dynamic dependencies:
+
+- `libvoicevox_core.so`
+- `liblog.so`
+- `libandroid.so`
+- `libm.so`
+- `libdl.so`
+- `libc.so`
+
+WrapperからONNX Runtimeへの直接Dynamic Linkはなく、Android側はruntimeを先にloadし、wrapperはVOICEVOX Core API経由でONNX Runtimeを使用します。
+
+Exact Build Match:
+
+- Android Studio Debug build outputとProduction `libvoicevox_runtime.so`はSize/SHA-256完全一致。
+- `Exact Build Match: YES`
+
+ただしAndroid Studio build tree内のVOICEVOX Core / ONNX Runtime dependency binaryと現在Production側の同名Binaryはhashが異なり、dependency bundle全体のbyte-identical rebuild条件は固定されていません。
+
+判定:
+
+- Origin: `OWN-DEPENDENT`
+- Exact Build Match: `YES`
+- Rebuild Reproducibility: `PARTIAL`
+- Source Distribution: `REVIEW REQUIRED`
+- Binary Redistribution: `REVIEW REQUIRED`
+
+Source ownership/build provenanceは確認済みですが、現行Native SourceにProject Salieri License headerはなく、過去配布時licenseからProject Salieri Licenseへの明示的移行も未確認です。Public v0.1ではSource/Binaryとも収録しません。
+
+将来公開対象にする場合は、少なくとも次を別Gateとして処理します。
+
+1. Studio-owned Sourceへ適用するpublic licenseを明示する。
+2. `voicevox_core.h`等の第三者Source/Headerを分離してnoticeを保持する。
+3. `ndkVersion`をbuild設定へ固定する。
+4. Release/strip方針を確定する。
+5. clean rebuildとfunctional testを実施し、正式artifactのfingerprintを保存する。
+
+## Other unconfirmed items and resolution procedure
 
 ### 1. Windows Vosk native runtime
 
@@ -96,41 +224,7 @@ Current status:
 
 Windows Voskを将来同梱する場合は`libvosk.dll`だけでなく、同梱される`libgcc` / `libstdc++` / `libwinpthread`等のlicenseも個別監査する。
 
-### 2. `voicevox_unity_bridge.dll`
-
-Current status:
-
-- SHA-256: `0D93047EF46047854ED00F0F009DC9B042C68C417E421B8657C3CF9D1AA5C94B`
-- 実使用確認済み。
-- 独立SemVer / build manifestなし。
-- Project内統合物だが、公開可能なnative source / build recipeのclosureが取れていない。
-
-確定手順:
-
-1. Native sourceのoriginを特定する。
-2. Studio-owned source、modified third-party source、generated binaryを区別する。
-3. Build toolchain、compiler version、target architecture、link dependencyを記録する。
-4. Clean buildを行い、build outputのSHA-256を保存する。
-5. 元binaryと一致しない場合は、動作互換性を検証した上で新buildを正式artifactとして採用するか判断する。
-6. Source / build recipe / license provenanceが閉じるまでPublic配布しない。
-
-### 3. Android `libvoicevox_runtime.so`
-
-Current status:
-
-- SHA-256: `F1190908EFC5FC5BB60E4FF748E8AFBB8FC0EF052ACC829E544752CC39CF5CC5`
-- 実使用確認済み。
-- Production内にnative source / build manifestなし。
-
-確定手順:
-
-1. 旧NDK project、CMake / ndk-build files、CI artifact、backupを探索する。
-2. Source originとthird-party dependencyを記録する。
-3. NDK version、ABI、STL、link libraries、compile flagsを固定する。
-4. RebuildしてSHA-256を記録する。
-5. Source/build provenanceが確定するまでPublic配布しない。
-
-### 4. Arduino AVR Core actual build version
+### 2. Arduino AVR Core actual build version
 
 Current status:
 
@@ -147,7 +241,7 @@ Current status:
 5. Compile result、warning、binary size、toolchain versionを記録する。
 6. 実機UploadとStartup Full-Offを確認する場合は、それをCompile確認とは別Gateとして記録する。
 
-### 5. Open JTalk / UniDic dictionary distribution
+### 3. Open JTalk / UniDic dictionary distribution
 
 Current status:
 
@@ -165,14 +259,17 @@ Current status:
 
 ## Public release gate interpretation
 
-Public v0.1は第三者Binary / Model / DictionaryをRepositoryに同梱しません。そのため上記`UNCONFIRMED`項目は、現時点ではPublic source publicationのBlockerではなく、**完全再現性および将来のartifact redistributionに対するReview Required**です。
+Public v0.1は第三者Binary / Model / Dictionaryと上記VOICEVOX native bridge BinaryをRepositoryに同梱しません。そのため残る`UNCONFIRMED` / `NOT FOUND`項目は、現時点ではPublic source publicationのBlockerではなく、**完全再現性および将来のartifact redistributionに対するReview Required**です。
 
-ただし次の状態になった場合はPublic blockerへ昇格します。
+Android `libvoicevox_runtime.so`は`CONFIRMED OWN-DEPENDENT`までprovenanceが閉じましたが、Public v0.1の公開対象へ追加したわけではありません。Source license migrationとRelease build方針が完了するまではPublic boundaryの外に置きます。
+
+次の状態になった場合はPublic blockerへ昇格します。
 
 - 未確認third-party artifactをRepositoryへ追加する。
 - License / attribution条件が不明なartifactを配布物へ同梱する。
 - README / DEPENDENCIESが「cloneのみで動く」と誤認させる。
-- Project-specific native bridgeを、source/build provenanceなしで公式配布物として含める。
+- Windows `voicevox_unity_bridge.dll`をsource/build provenanceなしで公式配布物へ含める。
+- Android wrapperをlicense/third-party boundary未整理のままPublic source/binaryへ追加する。
 
 ## Source of truth
 
