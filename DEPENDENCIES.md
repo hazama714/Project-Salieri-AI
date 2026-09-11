@@ -79,13 +79,26 @@ API KeyをRepository、README、log、manifest、build artifactへ記録しな�
 - Model archiveを`Assets/StreamingAssets/Vosk/models/vosk-model-small-ja-0.22.zip`へ配置します。
 - Model manifestを`Assets/StreamingAssets/Vosk/models/vosk-model-small-ja-0.22.manifest.json`へ配置します。
 
-RuntimeはmanifestのSHA-256、展開後file countとrequired pathsを検証し、`Application.persistentDataPath/Vosk/models/vosk-model-small-ja-0.22`へ展開します。Public RepositoryにはDLL、zip、manifestを収録しません。使用するnative runtimeのexact versionは`REVIEW REQUIRED`です。
+RuntimeはmanifestのSHA-256、展開後file countとrequired pathsを検証し、`Application.persistentDataPath/Vosk/models/vosk-model-small-ja-0.22`へ展開します。Public RepositoryにはDLL、zip、manifestを収録しません。使用するWindows native runtimeのexact versionは`REVIEW REQUIRED`です。
+
+日本語Modelの公式一覧とLicenseは次で確認できます。
+
+```text
+https://alphacephei.com/vosk/models
+```
 
 ### Android
 
-Android sourceは`org.vosk` / `org.vosk.android` APIを使用し、runtime識別子は`vosk_android_0.3.75`です。`com.alphacephei:vosk-android:0.3.75`相当と、その依存するJNA/native payloadをAndroid Gradle側で解決してください。exact artifactの取得元とGradle構成は公開前の再現試験で`REVIEW REQUIRED`です。
+Android sourceは`org.vosk` / `org.vosk.android` APIを使用し、runtime識別子は`vosk_android_0.3.75`です。Vosk公式Android demoが使用しているGradle dependencyは次です。
 
-Windowsと同じModel archive / manifestをAndroid assetsへ含めると、端末上の`filesDir/vosk/models/vosk-model-small-ja-0.22`へ検証付きで展開されます。AAR / SO / JARとModel archiveはRepositoryに含みません。
+```gradle
+implementation 'com.alphacephei:vosk-android:0.3.75@aar'
+implementation 'net.java.dev.jna:jna:5.18.1@aar'
+```
+
+この2 artifactをGradle側で解決してください。Vosk AndroidはApache-2.0、JNA 5.18.1はLGPL-2.1-or-laterまたはApache-2.0のdual licenseです。Public RepositoryにはAAR / SO / JARを収録しません。
+
+Windowsと同じModel archive / manifestをAndroid assetsへ含めると、端末上の`filesDir/vosk/models/vosk-model-small-ja-0.22`へ検証付きで展開されます。Model archive自体もRepositoryには含みません。
 
 ## 8. VOICEVOX / Open JTalk
 
@@ -128,7 +141,19 @@ implementation 'com.github.mik3y:usb-serial-for-android:3.11.0'
 - AndroidX dependencyは選択したUnity / Android Gradle Plugin構成で解決
 - `Assets/Plugins/Android/baseProjectTemplate.gradle`はR8 `8.13.19`を`Assets/Plugins/Android/BuildTools/r8-8.13.19.jar`から読む設定
 
-R8 JARは非収録です。exact artifact / noticeの確認が必要なため`REVIEW REQUIRED`です。Android Body TransportはUSB SerialとBluetoothを選択可能であり、Bluetoothを削除・USBへ置換しないでください。
+R8 JARはRepositoryに収録しません。R8 upstreamはversion指定prebuiltをGoogle Mavenまたは公式`r8-releases` bucketから取得でき、未処理版JARの公式URL形式は次です。
+
+```text
+https://storage.googleapis.com/r8-releases/raw/<version>/r8.jar
+```
+
+このProjectでは`<version>`に`8.13.19`を使用し、取得したJARを次へ配置する構成です。
+
+```text
+Assets/Plugins/Android/BuildTools/r8-8.13.19.jar
+```
+
+R8 upstream LicenseはBSD 3-Clause形式です。Public v0.1ではJARを再配布しないため、取得したexact artifactのchecksum固定はまだ行っておらず`REVIEW REQUIRED`です。Android Body TransportはUSB SerialとBluetoothを選択可能であり、Bluetoothを削除・USBへ置換しないでください。
 
 ## 11. Arduino Firmware
 
@@ -140,7 +165,13 @@ R8 JARは非収録です。exact artifact / noticeの確認が必要なため`RE
 
 Firmwareの詳細は[`Firmware/.../README.md`](Firmware/Arduino/BODYLOBO/Salieri_BODYLOBO_Unified_PCA9685_10Servo_115200/README.md)を参照してください。Public v0.1のArduino compileは`NOT RUN`です。
 
-## 12. 非収録データ
+## 12. Maintenance / Optional Scenes
+
+Maintenance用途のSceneは`ProjectSettings/EditorBuildSettings.asset`の有効Build Sceneには含めていません。既知のMaintenance側NecoMaid参照およびDebug `LogToFile`参照はPublic v0.1 Runtimeの必須依存ではなく、Build対象外のためOptional / Maintenance扱いです。
+
+これらのMaintenance Sceneを利用する場合は、対応する外部Asset / Debug構成を利用者側で復元する必要があります。Public v0.1の通常セットアップでは復元不要です。将来の公開整理としてScene除外または参照cleanupを`REVIEW REQUIRED`とします。
+
+## 13. 非収録データ
 
 次をRepositoryへ追加しないでください。
 
