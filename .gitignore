@@ -1,16 +1,18 @@
-# Unity generated folders
+# Unity generated data
 [Ll]ibrary/
 [Tt]emp/
 [Oo]bj/
-[Bb]uild/
-[Bb]uilds/
 [Ll]ogs/
 [Uu]ser[Ss]ettings/
+[Mm]emoryCaptures/
 
-# IDE / editor
-.vscode/
-.idea/
-.vs/
+# Builds and packages
+[Bb]uild/
+[Bb]uilds/
+*.apk
+*.aab
+
+# IDE-generated files
 *.csproj
 *.sln
 *.suo
@@ -18,21 +20,47 @@
 *.userprefs
 *.pidb
 *.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+.vs/
+.idea/
+.vscode/
+
+# Secrets and machine-local configuration
+.env
+.env.*
+*.pfx
+*.p12
+*.keystore
+*.jks
+
+# Runtime-generated data
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+experience*.json
+
+# Excluded binary/model/archive formats
+*.dll
+*.so
+*.dylib
+*.aar
+*.jar
+*.onnx
+*.gguf
+*.bin
+*.zip
+*.7z
+
+# Avatar assets are supplied by each user
+*.vrm
 
 # OS files
 .DS_Store
 Thumbs.db
-
-# Large / local runtime assets
-*.gguf
-*.onnx
-*.vvm
-*.so
-*.dll
-*.apk
-*.aab
-
-# Local secrets / machine-specific configuration
-.env
-.env.*
-*.local
+Desktop.ini

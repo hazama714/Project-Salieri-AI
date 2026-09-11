@@ -1,0 +1,9 @@
+{
+  "entries": [
+    { "expression": "Joy",     "blendShape": "Joy" },
+    { "expression": "Fun",     "blendShape": "Fun" },
+    { "expression": "Sorrow",  "blendShape": "Sorrow" },
+    { "expression": "Angry",   "blendShape": "Angry" },
+    { "expression": "Neutral", "blendShape": "Neutral" }
+  ]
+}

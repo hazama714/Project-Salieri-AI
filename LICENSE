@@ -1,0 +1,182 @@
+Project Salieri License
+Version 1.0
+Effective Date: 2026-09-11
+
+Copyright (c) 2026 Studio Hazama 714
+
+1. Scope
+
+This license applies only to Project Salieri AI source files that expressly
+identify this license, including by the SPDX identifier
+LicenseRef-Project-Salieri-1.0 (the "Software").
+
+This license is a source-available license. It is not an OSI-approved open
+source license.
+
+Third-party software, libraries, models, data, and assets are not licensed
+under this license. Their respective licenses and terms continue to apply.
+In particular, avatar assets, VRM files, meshes, textures, materials,
+BlendShape assets, Avatar assets, MetaObjects, and other avatar-derived
+assets—including the Asis3D avatar and its derived assets—are outside the
+scope of this license unless Studio Hazama 714 expressly states otherwise in
+writing.
+
+2. Definitions
+
+"Individual" means a natural person acting solely on that person's own
+behalf, and not on behalf of a company, organization, institution, client,
+employer, or other legal entity.
+
+"Non-Commercial Personal Use" means use by an Individual solely for that
+Individual's own non-commercial purposes, without compensation, revenue,
+commercial advantage, organizational purpose, or use in providing goods or
+services to another person or entity.
+
+"Redistribution" means making the Software, a modified version of the
+Software, a binary built from the Software, or source derived from the
+Software available to any third party, whether publicly or privately,
+whether for payment or free of charge.
+
+3. Limited Permission for Non-Commercial Personal Use
+
+Subject to all terms of this license, Studio Hazama 714 grants an Individual
+a limited, non-exclusive, non-transferable, non-sublicensable, royalty-free
+permission to:
+
+a. obtain and make private copies of the Software;
+b. run, study, inspect, research, and technically evaluate the Software;
+c. modify the Software solely for the Individual's own use;
+d. incorporate the Software into the Individual's own non-commercial,
+   personally used AI, robot, or avatar project;
+e. demonstrate that personal project on a non-commercial basis; and
+f. publish non-commercial images or videos showing the Software or a personal
+   project in operation, provided that no Software, modified source, or binary
+   is redistributed through that publication.
+
+Private copies stored on the Individual's local computer, private storage, or
+non-public development environment for the permitted use above are not
+Redistribution.
+
+All copyright, license, and attribution notices present in the Software must
+be preserved in permitted private copies and modifications.
+
+4. Uses Requiring Prior Written Permission
+
+No rights are automatically granted for any use outside Non-Commercial
+Personal Use. Prior written permission from Studio Hazama 714 is required for
+all such use, including, without limitation:
+
+a. use by or on behalf of a corporation, company, organization, group,
+   educational institution, research institution, or other entity;
+b. business, professional, commercial, revenue-generating, or for-profit use;
+c. incorporation into a product, service, SaaS, cloud service, paid
+   application, commercial AI, or commercial robot;
+d. contract development, commissioned work, consulting, outsourcing, or work
+   performed for another person or entity;
+e. advertising-supported or sponsorship-supported use;
+f. Redistribution of source code, modified source code, binaries, or source
+   supplied as part of a derivative work;
+g. granting or sublicensing any right to a third party; and
+h. any other use exceeding Non-Commercial Personal Use.
+
+These restrictions apply whether or not the proposed use is offered for a
+fee. If the permitted status of a use is unclear, prior written permission is
+required before that use begins.
+
+5. No Redistribution
+
+Except where Studio Hazama 714 gives explicit prior written permission, the
+Software, modified versions of the Software, binaries built from the
+Software, and source derived from the Software may not be redistributed.
+
+6. Ownership and Reserved Rights
+
+The Software is licensed, not sold. Studio Hazama 714 retains all right,
+title, and interest in the Software. All rights not expressly granted by this
+license are reserved. No patent, trademark, trade name, logo, publicity, or
+other brand right is granted by this license.
+
+7. Names and Branding
+
+This license does not grant permission to use the names "Project Salieri",
+"Project Salieri AI", or "Studio Hazama 714" as a product name, service name,
+organization name, endorsement, certification, partnership, or affiliation.
+Use that is likely to cause others to believe that a product or project is
+official, certified, endorsed, or affiliated is prohibited.
+
+Truthful, nominative reference to identify the Software remains subject to
+applicable law and must not imply endorsement or affiliation.
+
+8. Third-Party Materials
+
+Third-party dependencies and materials remain subject to their own licenses,
+copyright notices, usage terms, and redistribution restrictions. Nothing in
+this license overrides, replaces, or expands rights under any third-party
+license. Third-party compliance is the user's responsibility.
+
+9. Previously Released Apache-2.0 Versions
+
+Some Project Salieri source versions were previously released in the
+Project-Salieri-AI-Android-Runtime repository under the Apache License 2.0.
+Rights validly granted for those previously released versions are not
+withdrawn or reduced by this license. Those repository versions remain under
+the Apache License 2.0.
+
+This Project Salieri License Version 1.0 applies only to versions distributed
+with an express notice identifying this license.
+
+10. Physical Device and AI Safety
+
+The Software may control or interact with AI systems, robots, servos, cameras,
+communication devices, and other physical devices. The user is solely
+responsible for appropriate supervision, emergency stopping, access control,
+electrical and mechanical safeguards, operating limits, testing, and all
+other safety measures. The user assumes all risks arising from use of the
+Software or connected devices.
+
+11. Disclaimer of Warranty
+
+THE SOFTWARE IS PROVIDED "AS IS" AND "AS AVAILABLE", WITHOUT WARRANTY OF ANY
+KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, NON-INFRINGEMENT,
+ACCURACY, RELIABILITY, SAFETY, OR UNINTERRUPTED OPERATION. TO THE MAXIMUM
+EXTENT PERMITTED BY LAW, ALL WARRANTIES ARE DISCLAIMED.
+
+12. Limitation of Liability
+
+TO THE MAXIMUM EXTENT PERMITTED BY LAW, STUDIO HAZAMA 714 AND ITS AUTHORS,
+OWNERS, CONTRIBUTORS, AND LICENSORS SHALL NOT BE LIABLE FOR ANY DIRECT,
+INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, CONSEQUENTIAL, OR OTHER DAMAGES,
+OR FOR ANY LOSS, INJURY, DEVICE DAMAGE, DATA LOSS, LOST PROFITS, BUSINESS
+INTERRUPTION, OR CLAIM ARISING FROM OR RELATED TO THE SOFTWARE OR ITS USE,
+EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+Nothing in this license excludes or limits liability to the extent that such
+exclusion or limitation is prohibited by applicable law.
+
+13. Termination
+
+The permissions granted by this license terminate automatically upon breach
+of its terms. Upon termination, the user must stop using the Software and
+delete all copies, except to the extent retention is required by applicable
+law. Termination does not limit any other remedy available to Studio Hazama
+714.
+
+14. Governing Law
+
+This license is governed by the laws of Japan, without regard to conflict-of-
+law principles.
+
+15. License Versions
+
+This is Project Salieri License Version 1.0, effective 2026-09-11. Studio
+Hazama 714 may publish later license versions, such as Version 1.1 or Version
+2.0. A later license version does not automatically apply to a version of the
+Software already distributed under this Version 1.0 unless expressly stated.
+
+16. Separate Written Permission
+
+Studio Hazama 714 may grant additional or different rights through a separate
+written agreement. Requests for uses not permitted by this license must be
+made through an official contact channel designated by Studio Hazama 714.
+

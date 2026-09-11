@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "skills": [
+    {
+      "schemaVersion": 1,
+      "skillId": "select_observation_target",
+      "version": 1,
+      "displayName": "Select Observation Target",
+      "description": "Returns the current stable object observation target selected by ObservationTargetSelectionService.",
+      "category": "Perception/ObjectTargeting",
+      "inputType": "select_observation_target_request",
+      "outputType": "select_observation_target_result",
+      "preconditions": [
+        "ObjectTrackingAvailable",
+        "StableObservationTargetAvailable"
+      ],
+      "effects": [
+        "ObservationTargetSnapshotAvailable"
+      ],
+      "requiredPermissions": [],
+      "requiredResources": [
+        "ObservationTargetSelectionService"
+      ],
+      "riskLevel": "None",
+      "timeoutSeconds": 1.0,
+      "interruptible": true,
+      "platformSupport": [
+        "Any"
+      ],
+      "implementationHandlerId": "select_observation_target_v1"
+    }
+  ]
+}
