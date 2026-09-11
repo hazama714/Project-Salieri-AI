@@ -62,6 +62,21 @@ Arduino IDEのBoards Manager / Library Manager等から導入してください�
 - Adafruit PWM Servo Driver Library
 - Adafruit BusIO
 
+## Upload手順
+
+1. Arduino IDEで`Salieri_BODYLOBO_Unified_PCA9685_10Servo_115200.ino`を開きます。
+2. Boards ManagerからArduino AVR Boardsを導入し、Boardに`Arduino Uno`またはclassic `Arduino Nano`を選択します。Nanoの場合は実機に合うProcessor / bootloader設定も確認します。
+3. Arduinoを接続し、Toolsメニューから正しいPortを選択します。
+4. Library ManagerからAdafruit PWM Servo Driver LibraryとAdafruit BusIOを導入します。
+5. `Verify`を実行し、使用環境でcompileが成功することを確認します。
+6. Servo電源を安全な状態にします。初回は機構負荷を外すか、可動範囲内で直ちに電源遮断できる状態にしてください。
+7. `Upload`を実行します。
+8. 起動直後にPCA9685 CH0..CH9がFull-Offであり、自動Neutral / Home poseへ動かないことを確認します。
+9. Arduino、PCA9685、Servo電源のCommon Groundを確認します。
+10. UnityまたはSerial terminalから、Servo commandを1軸ずつ小さな角度差で送り、ID mappingと回転方向を確認します。
+
+Upload前後を通して、非常停止と物理電源遮断手段を確保してください。
+
 ## 電源・配線上の注意
 
 - Servo電源をArduinoの5V pinから直接供給しないでください。

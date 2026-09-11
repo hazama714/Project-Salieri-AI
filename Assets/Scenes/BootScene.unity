@@ -683,7 +683,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1244956735}
-  - component: {fileID: 1244956734}
   m_Layer: 0
   m_Name: Debag
   m_TagString: Untagged
@@ -691,18 +690,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1244956734
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1244956733}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebc74fc3a4d2d66449d181bf31d0ee05, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1244956735
 Transform:
   m_ObjectHideFlags: 0

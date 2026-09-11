@@ -19,22 +19,34 @@ Seeing
 
 - Unity Runtimeの公開対象Source 502件
 - PC Editor / Android向けの共通Runtime基盤
-- Attention、Conversation、Experience / Memory、Free Pose、VRM / IK、VirtualBody、Physical Control、Safety、Communication
+- Attention、Conversation、Experience Record基盤、Recall基盤、World Memory基盤、Free Pose、VRM / IK、VirtualBody、Physical Control、Safety、Communication
+- Studio Hazama 714制作のVirtualBody Runtime用Robot Body Model 2件
 - Arduino + PCA9685向けBODYLOBO Firmware 1件
 
 Source Versionはファイル単位で管理し、Public v0.1の初回公開対象は`0.1.0`から開始します。運用規則は[Source Versioning](SOURCE_VERSIONING.md)を参照してください。
 
 ## 収録しないもの
 
-- Asis3DおよびAvatar由来Asset
-- VRMファイル、Mesh、Texture、Material、BlendShape、Avatar、MetaObject
+- Asis3D AvatarおよびAvatar由来Asset
+- VRMファイル、Avatar由来Mesh、Texture、Material、BlendShape、Avatar、MetaObject
 - Local LLM RuntimeおよびGGUF Model
 - OpenCV for Unity Asset Store内容
 - Vosk / VOICEVOX / Open JTalk / UniDicのModel・Dictionary・Native Binary
 - ONNX Model、DLL、SO、AAR、JAR
 - API Key、credential、Runtime database、log、build成果物
 
-このRepositoryは完成済みAvatarや第三者Binaryを再配布しません。利用者は自分のVRMと必要な外部Dependencyを用意してください。導入条件は[DEPENDENCIES.md](DEPENDENCIES.md)、外部コンポーネントの権利情報は[THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)にまとめています。
+このRepositoryに収録する`Asis3D_3_Vbody.fbx`と`AILob.fbx`は、Studio Hazama 714が制作したRobot Body / VirtualBody用Assetです。表示・IK解・物理Retargetの基盤となるVirtualBodyであり、会話キャラクターとして表示するVRM Avatarとは別物です。
+
+完成済みAvatarや第三者Binaryは再配布しません。利用者は自分のVRMと必要な外部Dependencyを用意してください。導入条件は[DEPENDENCIES.md](DEPENDENCIES.md)、外部コンポーネントの権利情報は[THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)にまとめています。
+
+## 実装成熟度
+
+- Experience Record foundation：回答と対象証拠の保存基盤を実装済み
+- Recall foundation：保存済みExperienceの検索・Known判定基盤を実装済み
+- World Memory infrastructure：Entity / Fact / Evidence / ProvenanceおよびSQLite永続化基盤を実装済み
+- Visual identity matching：単一frameの64-bit dHash exact matchであり、照明・角度・crop変化に対する安定性は実験段階
+
+本Repositoryはturnkey完成品ではありません。第三者Dependency、Native runtime、Model、辞書、利用者VRMの導入と、Scene参照の設定が必要です。
 
 ## セットアップ概要
 
@@ -45,7 +57,7 @@ Source Versionはファイル単位で管理し、Public v0.1の初回公開対�
 5. API KeyをGitへcommitしないでください。
 6. 実機Bodyを使う場合は[Firmware README](Firmware/Arduino/BODYLOBO/Salieri_BODYLOBO_Unified_PCA9685_10Servo_115200/README.md)を確認します。
 
-外部DependencyとAvatarを意図的に除外しているため、clone直後は利用者による導入・参照設定が必要です。
+外部DependencyとAvatarを意図的に除外しているため、clone直後は利用者による導入・参照設定が必要です。収録VirtualBody FBXはAvatarの代替ではありません。
 
 ## License
 
