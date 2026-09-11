@@ -85,6 +85,58 @@ SHA-1はProjectで使用しているOpenCV for Unity downloader定義と一致�
 
 Public RepositoryにはR8 JARを含めません。
 
+### Arduino Firmware Compile
+
+Status: `CONFIRMED / PASS`
+
+Firmware Source SHA-256 before/after:
+
+```text
+F1C58A86A4CA0B14D902223E88A4CCA69246EF1CC1195B9C1648AE137D585C15
+```
+
+Source Changed: `NO`
+
+Validation toolchain:
+
+- Arduino IDE: `1.8.19`
+- Arduino Builder: `1.6.1`
+- Arduino AVR Boards: `1.8.6`
+- avr-g++: `7.3.0` (`7.3.0-atmel3.6.1-arduino7`)
+- Wire: `1.0`
+- Adafruit PWM Servo Driver Library: `3.0.3`
+- Adafruit BusIO: `1.17.4`
+- SPI: `1.0`（BusIO dependency）
+
+Arduino Uno:
+
+- FQBN: `arduino:avr:uno`
+- Compile: `PASS`
+- Flash: `9,778 / 32,256 bytes (30%)`
+- SRAM: `441 / 2,048 bytes (21%)`
+- ELF: `76,648 bytes`
+- HEX: `27,525 bytes`
+- HEX with bootloader: `28,328 bytes`
+
+Arduino Nano:
+
+- FQBN: `arduino:avr:nano:cpu=atmega328`
+- Processor: `ATmega328P`
+- Compile: `PASS`
+- Flash: `9,778 / 30,720 bytes (31%)`
+- SRAM: `441 / 2,048 bytes (21%)`
+- ELF: `76,648 bytes`
+- HEX: `27,525 bytes`
+
+Warningsは両Boardとも4件で、すべてArduino AVR Core `cores/arduino/new.cpp`のunused parameter `tag`由来です。Firmware Source由来Warningは`0`です。
+
+Safety validation:
+
+- Explicit Startup Full-Off CH0..CH9: `PASS`
+- Automatic Startup Pose: `NONE`
+- Automatic Neutral/Home: `NONE`
+- Hardware Upload: `NOT PERFORMED`
+
 ## Native integration provenance audit
 
 ### Windows `voicevox_unity_bridge.dll`
@@ -224,24 +276,7 @@ Current status:
 
 Windows Voskを将来同梱する場合は`libvosk.dll`だけでなく、同梱される`libgcc` / `libstdc++` / `libwinpthread`等のlicenseも個別監査する。
 
-### 2. Arduino AVR Core actual build version
-
-Current status:
-
-- Validation PC installed Arduino AVR Boards: `1.8.6`
-- Public v0.1 Firmware Compile: `NOT RUN`
-- よって`1.8.6`は「導入Version」であり「compile済みVersion」ではない。
-
-確定手順:
-
-1. Arduino CLIまたはIDEでArduino AVR Boards `1.8.6`を明示選択する。
-2. 対象Board / FQBNを記録する。
-3. FirmwareをVerify / Compileする。
-4. Compiler outputにCore 1.8.6の使用が現れることを保存する。
-5. Compile result、warning、binary size、toolchain versionを記録する。
-6. 実機UploadとStartup Full-Offを確認する場合は、それをCompile確認とは別Gateとして記録する。
-
-### 3. Open JTalk / UniDic dictionary distribution
+### 2. Open JTalk / UniDic dictionary distribution
 
 Current status:
 
@@ -262,6 +297,8 @@ Current status:
 Public v0.1は第三者Binary / Model / Dictionaryと上記VOICEVOX native bridge BinaryをRepositoryに同梱しません。そのため残る`UNCONFIRMED` / `NOT FOUND`項目は、現時点ではPublic source publicationのBlockerではなく、**完全再現性および将来のartifact redistributionに対するReview Required**です。
 
 Android `libvoicevox_runtime.so`は`CONFIRMED OWN-DEPENDENT`までprovenanceが閉じましたが、Public v0.1の公開対象へ追加したわけではありません。Source license migrationとRelease build方針が完了するまではPublic boundaryの外に置きます。
+
+Arduino Firmware Compile GateはUno / Nano ATmega328Pの両方で`PASS`し、Source SHA-256はcompile前後で不変です。Firmware compileはPublic releaseの未確認項目から除外します。
 
 次の状態になった場合はPublic blockerへ昇格します。
 
