@@ -62,6 +62,16 @@ Arduino IDEのBoards Manager / Library Manager等から導入してください�
 - Adafruit PWM Servo Driver Library
 - Adafruit BusIO
 
+Public v0.1 compile validationでは次を使用しました。
+
+- Arduino AVR Boards: `1.8.6`
+- Wire: `1.0`
+- Adafruit PWM Servo Driver Library: `3.0.3`
+- Adafruit BusIO: `1.17.4`
+- Arduino IDE: `1.8.19`
+- Arduino Builder: `1.6.1`
+- avr-g++: `7.3.0` (`7.3.0-atmel3.6.1-arduino7`)
+
 ## Upload手順
 
 1. Arduino IDEで`Salieri_BODYLOBO_Unified_PCA9685_10Servo_115200.ino`を開きます。
@@ -88,4 +98,26 @@ Upload前後を通して、非常停止と物理電源遮断手段を確保し�
 
 ## Compile status
 
-Public v0.1 Firmware Sourceの静的Safety GateはPASSしています。Arduino CLIが検証環境に存在しなかったため、Firmware compileは`NOT RUN`です。
+Public v0.1 Firmware Sourceはソース無変更でArduino Uno / Nanoの両方でcompile `PASS`です。
+
+Source SHA-256:
+
+```text
+F1C58A86A4CA0B14D902223E88A4CCA69246EF1CC1195B9C1648AE137D585C15
+```
+
+Validation結果:
+
+| Board | FQBN | Result | Flash | SRAM |
+|---|---|---|---:|---:|
+| Arduino Uno | `arduino:avr:uno` | PASS | 9,778 / 32,256 bytes (30%) | 441 / 2,048 bytes (21%) |
+| Arduino Nano ATmega328P | `arduino:avr:nano:cpu=atmega328` | PASS | 9,778 / 30,720 bytes (31%) | 441 / 2,048 bytes (21%) |
+
+各compileのwarningはArduino AVR Core `new.cpp`由来の未使用引数4件のみで、Firmware Source由来Warningは`0`です。
+
+Safety確認:
+
+- Explicit Startup Full-Off: `PASS`
+- Automatic Startup Pose: `NONE`
+- Automatic Neutral / Home: `NONE`
+- Hardware Upload: `NOT PERFORMED`
