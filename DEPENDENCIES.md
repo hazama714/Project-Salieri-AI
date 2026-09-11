@@ -168,9 +168,38 @@ SHA-256 9BD4FEE054893F4CDFAED00AC5257BC414E08E916BD73528C310F5423F762369
 SHA-256 8DF20815BE9A84A4B4723B9E778D2EF6A4DF277E4872FE9EFE29676A60E02774
 ```
 
-Android側sourceはassetsの同じ相対Pathからdictionary / modelを端末の`filesDir`へコピーし、VOICEVOX CoreとVOICEVOX ONNX Runtime系native libraryを読み込みます。
+### Native integration provenance
 
-`voicevox_unity_bridge.dll`とAndroid側`libvoicevox_runtime.so`は実使用ファイルとSHA-256を確認済みですが、独立SemVer / build manifest / native source provenanceがPublic treeから再現できないため`UNCONFIRMED`です。Public v0.1ではこれらのBinaryを再配布しません。VOICEVOX経路を完全再現可能にする前にbuild provenanceまたは再build手順を固定してください。
+Windows `voicevox_unity_bridge.dll`はProductionで実使用され、AITuber_PCDev系の保存BinaryとSHA-256が完全一致しています。ただし元Native Source、build project、PDB / MAP / import library、作者記録を発見できませんでした。技術的provenanceは`NOT FOUND / UNKNOWN`で、再buildは`NOT READY`です。
+
+```text
+voicevox_unity_bridge.dll
+SHA-256 0D93047EF46047854ED00F0F009DC9B042C68C417E421B8657C3CF9D1AA5C94B
+Architecture: Windows x86-64 / PE32+
+Calling convention used by managed wrapper: Cdecl
+Direct imports: voicevox_core.dll, KERNEL32.dll
+```
+
+したがってPublic v0.1ではWindows bridge Binaryを収録せず、「Public SourceからWindows VOICEVOX bridgeを再構築可能」とも表明しません。元Source / build recipe / rightsが閉じるまではBinary redistributionとSource distributionを`REVIEW REQUIRED`とします。
+
+Android `libvoicevox_runtime.so`は、別管理のAndroid Studio `VoiceVoxRuntime` projectでStudio-owned wrapper Source、CMake / Gradle build recipe、toolchain metadata、Production Binaryと完全一致するbuild outputを確認しました。技術的provenanceは`CONFIRMED OWN-DEPENDENT`です。第三者VOICEVOX Core APIに依存しますが、wrapper実装自体に第三者Sourceをコピーした証拠は確認されていません。
+
+```text
+libvoicevox_runtime.so
+SHA-256 F1190908EFC5FC5BB60E4FF748E8AFBB8FC0EF052ACC829E544752CC39CF5CC5
+Exact Build Match: YES
+ABI: arm64-v8a
+NDK: 28.2.13676358 (r28c)
+Clang: 19.0.1
+CMake: 3.22.1
+Minimum Android API: 26
+Build type: Debug
+STL: -static-libstdc++
+```
+
+Android wrapperのSource ownershipは確認済みですが、現行SourceにはProject Salieri License headerがなく、過去配布時のlicenseからPublic Salieri Licenseへの明示的移行も未確認です。またProduction Binaryはunstripped Debug buildです。そのためPublic v0.1ではAndroid bridge Source/Binaryも収録せず、将来公開する場合はlicense migration、公式`voicevox_core.h`の第三者区分、NDK version固定、Release/strip方針を別途確定します。
+
+Android側sourceはassetsの同じ相対Pathからdictionary / modelを端末の`filesDir`へコピーし、VOICEVOX CoreとVOICEVOX ONNX Runtime系native libraryを読み込みます。
 
 Open JTalk dictionaryは`open_jtalk_dic_utf_8-1.11`を期待します。Distributionに含まれるLicense / noticeを保持し、Dictionary自体はRepositoryに収録しません。
 
