@@ -20,8 +20,8 @@ Project Salieri License v1.0はProject Salieri独自Sourceと、同Licenseの対
 | JNA | 5.18.1 (`net.java.dev.jna:jna:5.18.1@aar`) | Java Native Access project | https://github.com/java-native-access/jna | LGPL-2.1-or-later OR Apache-2.0 | NO | Binary not redistributed | Distribution時に採用license optionのcopyright/license noticeを保持 | YES, Android Vosk dependency | Vosk official Android demoが5.18.1を使用。JNA 4.0以降はdual license。 |
 | VOICEVOX Core | 0.16.4 | VOICEVOX project | https://github.com/VOICEVOX/voicevox_core | MIT for source and build artifacts in 0.16+ line | NO | Core binary not redistributed | If redistributed, retain MIT copyright/license | YES | Validation binary reports 0.16.4。VOICEVOX公式は0.16未満のbuild artifactだけ別Licenseと明記。Local archive provenanceは未保存。 |
 | VOICEVOX ONNX Runtime | 1.17.3 (`voicevox_onnxruntime-1.17.3`) | VOICEVOX project / onnxruntime-builder | https://github.com/VOICEVOX/onnxruntime-builder/releases | VOICEVOX ONNX Runtime terms | NO | Current Repository does not redistribute. Official terms permit application-bundled redistribution. | VOICEVOX credit required; generated audio must follow each voice-library term | YES | VOICEVOX Core 0.16系の製品版VVM用runtime。Generic Microsoft ONNX Runtimeと同一扱いしない。Validation binaries report 1.17.3。 |
-| `voicevox_unity_bridge.dll` | UNCONFIRMED independent build version | Project-specific integration / upstream VOICEVOX dependency | N/A — project build provenance not yet public | REVIEW REQUIRED | NO | Do not redistribute until build provenance and rights are fixed | Preserve all upstream notices once provenance is known | YES for current VOICEVOX integration | SHA-256 `0D93047EF46047854ED00F0F009DC9B042C68C417E421B8657C3CF9D1AA5C94B`。独立SemVer/build manifestなし。 |
-| `libvoicevox_runtime.so` | UNCONFIRMED independent build version | Project-specific Android integration / upstream VOICEVOX dependency | N/A — native build provenance not yet public | REVIEW REQUIRED | NO | Do not redistribute until source/build provenance and rights are fixed | Preserve all upstream notices once provenance is known | YES for current Android VOICEVOX integration | SHA-256 `F1190908EFC5FC5BB60E4FF748E8AFBB8FC0EF052ACC829E544752CC39CF5CC5`。Productionにnative source/build manifestなし。 |
+| `voicevox_unity_bridge.dll` | Native source/build provenance NOT FOUND | Origin UNKNOWN; copied through AITuber_PCDev lineage | N/A — native source/build project not found | REVIEW REQUIRED | NO | Do not redistribute | Rights/build provenance must be established before any distribution | YES for current Windows VOICEVOX integration | SHA-256 `0D93047EF46047854ED00F0F009DC9B042C68C417E421B8657C3CF9D1AA5C94B`。ProductionとAITuber_PCDev保存Binaryはexact match。Native author/source/build recipeは未特定。 |
+| `libvoicevox_runtime.so` | Project-specific build; provenance CONFIRMED OWN-DEPENDENT | Studio Hazama 714 / Hazama integration, dependent on VOICEVOX Core | Local Android Studio `VoiceVoxRuntime` project; not published in this repository | Studio-owned wrapper; public license migration REVIEW REQUIRED; third-party dependencies keep own terms | NO | Do not redistribute in Public v0.1 | If later distributed, add Project license notice and preserve VOICEVOX / header / dependency notices | YES for current Android VOICEVOX integration | SHA-256 `F1190908EFC5FC5BB60E4FF748E8AFBB8FC0EF052ACC829E544752CC39CF5CC5`。Source/CMake/Gradle/toolchain/Exact Build Matchを確認。Current binary is unstripped Debug build. |
 | VOICEVOX VVM `1.vvm` / 冥鳴ひまり | model metadata 0.16.0, VVM format 1, style ID 14 | VOICEVOX project / 冥鳴ひまり rights holder | https://github.com/VOICEVOX/voicevox_vvm | VOICEVOX voice-model terms + 冥鳴ひまり voice-library terms | NO | Repository does not redistribute. Current VOICEVOX VVM terms permit application-bundled redistribution. | VOICEVOX credit required; generated audio using this library requires `VOICEVOX:冥鳴ひまり` credit and the character-specific terms | YES | Selected Production model is `1.vvm`; SHA-256 `8DF20815BE9A84A4B4723B9E778D2EF6A4DF277E4872FE9EFE29676A60E02774`。 |
 | Open JTalk dictionary | `open_jtalk_dic_utf_8-1.11` distribution | Nagoya Institute of Technology contributors | https://open-jtalk.sourceforge.net/ | Distribution-specific BSD-style notices | NO | Dictionary not redistributed | Distributionに含まれる全noticeを保持 | YES | Expected pathは`Assets/StreamingAssets/VoiceVox/open_jtalk_dic_utf_8-1.11`。Archive hash / bundled notice setはまだpinしていない。 |
 | UniDic dictionary data | Distribution bundled with selected Open JTalk dictionary; exact revision REVIEW REQUIRED | UniDic Consortium / contributors | https://clrd.ninjal.ac.jp/unidic/ | Distribution-specific notices | NO | Dictionary not redistributed | Distributionに含まれる全noticeを保持 | YES | Open JTalk runtimeと辞書権利を分離して確認。 |
@@ -45,11 +45,18 @@ Public v0.1は第三者Binary / Model / Dictionary / purchased Assetを配布し
 - **VOICEVOX Core 0.16.4**: Official 0.16+ Core build artifactはMIT。再配布するならMIT noticeを保持する。
 - **VOICEVOX ONNX Runtime 1.17.3**: Generic Microsoft ONNX RuntimeではなくVOICEVOX固有termsで扱う。公式termsはアプリ組み込み再配布を許可するが、VOICEVOX creditとvoice-library条件が必要。
 - **VOICEVOX VVM / 冥鳴ひまり**: Current VVM termsはアプリ組み込み再配布を許可する。生成音声の利用は冥鳴ひまり側の条件も適用され、`VOICEVOX:冥鳴ひまり` creditが必要。
-- **Project-specific VOICEVOX bridge/runtime**: provenance不明のまま配布しない。Source/build recipeまたは正式なbuild manifestが確定してから配布判断する。
+- **Windows `voicevox_unity_bridge.dll`**: 元Native Source/build recipe/作者記録を発見できず、OriginはUNKNOWN。現在のPublic repoには含めない。権利と再build provenanceが閉じるまで再配布しない。
+- **Android `libvoicevox_runtime.so`**: Studio-owned wrapper SourceとExact Build Matchを確認した`OWN-DEPENDENT` integration。ただしPublic license migration、third-party header区分、Release/strip方針が未完了のためPublic v0.1にはSource/Binaryを含めない。
 - **YOLOX ONNX**: exact official release artifactは特定済み。現状は非収録。再配布する場合はApache-2.0 noticeとartifact-specific termsの再確認を行う。
 - **R8 / Arduino / Adafruit libraries**: Build dependencyとして利用者に取得させ、Public RepositoryではBinary / library payloadを同梱しない。
 
 Project Salieri Licenseの「再配布禁止」はProject Salieri独自Sourceに対する条件であり、第三者artifactのlicenseを縮小・拡張しません。第三者側で再配布可能でも、Project Salieri本体の再配布にはProject Salieri Licenseの条件が別途適用されます。
+
+## Project-owned integration components not included in Public v0.1
+
+Android `libvoicevox_runtime.so`のwrapper implementationは技術監査上`CONFIRMED OWN-DEPENDENT`です。所有根拠とbuild provenanceは確認されていますが、現在のPublic v0.1境界ではSource/Binaryとも収録しません。将来公開対象にする場合は、Project Salieri License適用を明示し、`voicevox_core.h`等の第三者部分を分離してnoticeを維持してください。
+
+Windows `voicevox_unity_bridge.dll`については同じ扱いに昇格させません。保存Binaryのlineageは確認できましたが、Native Sourceとauthor/build provenanceが見つからないため`UNKNOWN / NOT FOUND`のままです。
 
 ## Project-owned assets (not third-party)
 
@@ -68,4 +75,4 @@ Assets/LobBodyModels/RobotBody/AILob.fbx
 - DLL、SO、dylib、AAR、JAR
 - Vosk / VOICEVOX / Open JTalk / UniDic / YOLOX等のModel・Dictionary・Binary
 
-`REVIEW REQUIRED` / `UNCONFIRMED`は、現時点のRepositoryに該当物を含むという意味ではありません。将来そのartifactを配布物へ含める場合、または完全再現手順を保証する場合に、exact artifact、version、provider、license、notice、再配布条件を確認する必要があります。
+`REVIEW REQUIRED` / `UNCONFIRMED` / `NOT FOUND`は、現時点のRepositoryに該当物を含むという意味ではありません。将来そのartifactを配布物へ含める場合、または完全再現手順を保証する場合に、exact artifact、version、provider、license、notice、再配布条件を確認する必要があります。
