@@ -262,11 +262,31 @@ R8 upstream LicenseはBSD 3-Clauseです。Public v0.1ではJARを再配布し�
 
 対象はArduino UnoまたはNano classic相当です。Arduino IDE / Arduino CLIで次を導入してください。
 
-- Arduino AVR Boards（Arduino AVR Core / Wire）
-- Adafruit PWM Servo Driver Library（Validation側確認版`3.0.3`）
-- Adafruit BusIO（Validation側確認版`1.17.4`）
+- Arduino AVR Boards（Validation: `1.8.6`）
+- Wire（Validation: `1.0`）
+- Adafruit PWM Servo Driver Library（Validation: `3.0.3`）
+- Adafruit BusIO（Validation: `1.17.4`）
 
-Validation PCにはArduino AVR Boards `1.8.6`が導入されています。ただしPublic v0.1 Firmwareはまだcompileしていないため、`1.8.6`を「実際にcompile済みのCore Version」とは表記しません。Firmware Compile statusは引き続き`NOT RUN`です。
+Public v0.1 FirmwareはSource無変更でcompile `PASS`です。Validation環境はArduino IDE `1.8.19`、Arduino Builder `1.6.1`、avr-g++ `7.3.0`（`7.3.0-atmel3.6.1-arduino7`）です。
+
+```text
+Firmware Source SHA-256
+F1C58A86A4CA0B14D902223E88A4CCA69246EF1CC1195B9C1648AE137D585C15
+
+Arduino Uno
+FQBN: arduino:avr:uno
+Compile: PASS
+Flash: 9,778 / 32,256 bytes (30%)
+SRAM: 441 / 2,048 bytes (21%)
+
+Arduino Nano ATmega328P
+FQBN: arduino:avr:nano:cpu=atmega328
+Compile: PASS
+Flash: 9,778 / 30,720 bytes (31%)
+SRAM: 441 / 2,048 bytes (21%)
+```
+
+両方ともFirmware Source由来Warningは`0`です。確認されたwarning 4件はArduino AVR Core `new.cpp`の未使用引数由来です。Startup SafetyはCH0..CH9 Explicit Full-Off `PASS`、Automatic Startup Pose `NONE`、Automatic Neutral/Home `NONE`です。Hardware Uploadは今回実施していません。
 
 Firmwareの詳細は[`Firmware/.../README.md`](Firmware/Arduino/BODYLOBO/Salieri_BODYLOBO_Unified_PCA9685_10Servo_115200/README.md)を参照してください。
 
