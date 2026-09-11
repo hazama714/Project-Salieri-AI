@@ -2,6 +2,8 @@
 
 Project Salieri AI Public v0.1はProject固有SourceとStudio Hazama 714制作のVirtualBody FBXを公開し、第三者Asset・Native Binary・Model・Avatarを同梱しません。clone直後は完成状態ではなく、以下を利用者自身で導入・設定する必要があります。
 
+Validationで確認した実体のfingerprintと、未確定Dependencyの確認手順は[`docs/PUBLIC_DEPENDENCY_VERIFICATION.md`](docs/PUBLIC_DEPENDENCY_VERIFICATION.md)を参照してください。
+
 ## 1. Unity
 
 - Unity Editor: `2022.3.62f3`
@@ -52,13 +54,23 @@ https://github.com/gilzoide/unity-sqlite-net.git#1.3.2
 
 ## 5. OpenCV for Unity
 
-OpenCV for UnityはEnox SoftwareのUnity Asset Store製品です。
+Validation環境はEnox Software OpenCV for Unity `3.0.2`、内包OpenCV `4.13.0`です。Enox Softwareの3.0.2 release noteでもOpenCV 4.13.0への更新が確認できます。
 
-1. 利用者自身のAsset Store entitlementで取得します。
+1. 利用者自身のAsset Store entitlementでOpenCV for Unity `3.0.2`を取得します。
 2. Unity Package Manager / Asset Storeの正規手順でimportします。
 3. Project側のOpenCV参照を解決します。
 
-Production treeから使用Versionを一意に確定できなかったため、exact versionは`REVIEW REQUIRED`です。購入Assetのファイルを第三者へ再配布しないでください。
+Validation fingerprint:
+
+```text
+Windows x64 opencvforunity.dll
+SHA-256 4B6D8BF9E6B63B3451A49620F4A5AFA2CC3DB878416DEAE7CB0CBCE0E46F362C
+
+Android arm64 libopencvforunity.so
+SHA-256 E8682834CC3054A93DABCA70198F9D67C3D0D6DB7803CAF3B519429684B33C22
+```
+
+購入Assetのファイルを第三者へ再配布しないでください。Public RepositoryにはOpenCV for Unity package内容を含めません。
 
 ## 6. Cloud Conversation / OpenAI API Key
 
@@ -79,7 +91,14 @@ API KeyをRepository、README、log、manifest、build artifactへ記録しな�
 - Model archiveを`Assets/StreamingAssets/Vosk/models/vosk-model-small-ja-0.22.zip`へ配置します。
 - Model manifestを`Assets/StreamingAssets/Vosk/models/vosk-model-small-ja-0.22.manifest.json`へ配置します。
 
-RuntimeはmanifestのSHA-256、展開後file countとrequired pathsを検証し、`Application.persistentDataPath/Vosk/models/vosk-model-small-ja-0.22`へ展開します。Public RepositoryにはDLL、zip、manifestを収録しません。使用するWindows native runtimeのexact versionは`REVIEW REQUIRED`です。
+RuntimeはmanifestのSHA-256、展開後file countとrequired pathsを検証し、`Application.persistentDataPath/Vosk/models/vosk-model-small-ja-0.22`へ展開します。Public RepositoryにはDLL、zip、manifestを収録しません。
+
+Validation環境のWindows `libvosk.dll`は実使用とSHA-256まで確認済みですが、DLL自体に製品Version情報がなく元配布archiveも残っていないため、exact runtime versionは`UNCONFIRMED`です。推測で`0.3.x`を割り当てないでください。
+
+```text
+libvosk.dll
+SHA-256 9331C2F6A32CF77141AF27C9750E79532718F51BBC2E3CEA3C60F14CA4251E4E
+```
 
 日本語Modelの公式一覧とLicenseは次で確認できます。
 
@@ -100,14 +119,28 @@ implementation 'net.java.dev.jna:jna:5.18.1@aar'
 
 Windowsと同じModel archive / manifestをAndroid assetsへ含めると、端末上の`filesDir/vosk/models/vosk-model-small-ja-0.22`へ検証付きで展開されます。Model archive自体もRepositoryには含みません。
 
-## 8. VOICEVOX / Open JTalk
+## 8. VOICEVOX / VOICEVOX ONNX Runtime / Open JTalk
+
+Validation環境で確認できたVoice stackは次です。
+
+- VOICEVOX Core: `0.16.4`
+- VOICEVOX ONNX Runtime: `1.17.3`
+- Production選択VVM: `1.vvm`
+- Voice: 冥鳴ひまり
+- Style: ノーマル
+- Style ID: `14`
+- Voice model metadata version: `0.16.0`
+- VVM format version: `1`
+
+VOICEVOX Core 0.16系は通常のMicrosoft ONNX Runtimeではなく、製品版VVMを読むため`VOICEVOX ONNX Runtime`を使用します。公式Core changelogも`voicevox_onnxruntime-1.17.3`を指定しています。Generic Microsoft ONNX Runtime 1.17.3と同一物として扱わないでください。
 
 Windows側は次を必要とします。
 
-- `voicevox_unity_bridge`としてP/Invoke可能なnative bridgeとその依存runtime
-- VOICEVOX Core runtime
+- `voicevox_unity_bridge`としてP/Invoke可能なnative bridge
+- VOICEVOX Core `0.16.4`
+- VOICEVOX ONNX Runtime `1.17.3`
 - Open JTalk dictionary
-- `.vvm` voice model
+- `1.vvm`
 
 配置Path:
 
@@ -116,17 +149,50 @@ Assets/StreamingAssets/VoiceVox/open_jtalk_dic_utf_8-1.11/
 Assets/StreamingAssets/VoiceVox/models/1.vvm
 ```
 
-Android側sourceはassetsの同じ相対Pathからdictionary / modelを端末の`filesDir`へコピーし、`onnxruntime`、`voicevox_core`、`voicevox_runtime` native libraryを読み込みます。
+Validation fingerprint:
 
-Public treeからCore、bridge、ONNX Runtime、voice modelのexact versionを一意に確定できません。VOICEVOX Coreの版、各voice/modelの利用条件、native bridge build provenanceはすべて`REVIEW REQUIRED`です。Binary、Model、Dictionaryは非収録です。
+```text
+Windows voicevox_core.dll
+SHA-256 DBA594584FD70A25148FA0F73D50D061FA75E2BDBE46DC37CE79BF772B675420
 
-## 9. Perception / ONNX / YOLOX
+Android libvoicevox_core.so
+SHA-256 5382A785358F9A4B7510C2A8C317A4D985430CA415DA9C1FCC4529693A4C2420
 
-- OpenCV for Unityのruntimeを導入します。
+Windows voicevox_onnxruntime.dll
+SHA-256 C677274EDB5A77EA26893BA8368B3791724AB8A7ACAAB73A310C04FC47E9CD82
+
+Android ONNX Runtime binary used by the VOICEVOX path
+SHA-256 9BD4FEE054893F4CDFAED00AC5257BC414E08E916BD73528C310F5423F762369
+
+1.vvm
+SHA-256 8DF20815BE9A84A4B4723B9E778D2EF6A4DF277E4872FE9EFE29676A60E02774
+```
+
+Android側sourceはassetsの同じ相対Pathからdictionary / modelを端末の`filesDir`へコピーし、VOICEVOX CoreとVOICEVOX ONNX Runtime系native libraryを読み込みます。
+
+`voicevox_unity_bridge.dll`とAndroid側`libvoicevox_runtime.so`は実使用ファイルとSHA-256を確認済みですが、独立SemVer / build manifest / native source provenanceがPublic treeから再現できないため`UNCONFIRMED`です。Public v0.1ではこれらのBinaryを再配布しません。VOICEVOX経路を完全再現可能にする前にbuild provenanceまたは再build手順を固定してください。
+
+Open JTalk dictionaryは`open_jtalk_dic_utf_8-1.11`を期待します。Distributionに含まれるLicense / noticeを保持し、Dictionary自体はRepositoryに収録しません。
+
+VOICEVOX VVMのCurrent termsはアプリケーション組み込み再配布を許可していますが、本Repositoryでは`1.vvm`を同梱しません。生成音声の利用時はVOICEVOXおよび冥鳴ひまりの利用規約・クレジット条件に従ってください。
+
+## 9. Perception / YOLOX
+
+- OpenCV for Unity `3.0.2`を導入します。
 - Projectが期待するYOLOX model filenameは`yolox_tiny.onnx`です。
 - 配置Pathは`Assets/StreamingAssets/OpenCVForUnityExamples/dnn/yolox_tiny.onnx`です。
+- Provenance: Megvii-BaseDetection/YOLOX release `0.1.1rc0`
 
-ProductionのOpenCV example assetにはMegvii YOLOX release `0.1.1rc0`のdownload URLが記録されていますが、利用するmodel artifactのSHA・provider・再配布条件の独立確認は`REVIEW REQUIRED`です。ONNX modelとONNX/native runtimeはRepositoryに含みません。
+Validation fingerprint:
+
+```text
+yolox_tiny.onnx
+Size: 20,219,662 bytes
+SHA-256: 427CC366D34E27FF7A03E2899B5E3671425C262EA2291F88BB942BC1CC70B0F7
+SHA-1: 45985579A307AAE54C7B54CA257BC0B48606DEAC
+```
+
+SHA-1はOpenCV for UnityのDownloader定義値と一致し、公式YOLOX ONNX Runtime documentationが同じ`0.1.1rc0` release assetを案内しています。ONNX modelはRepositoryに含みません。Artifactに独立したLicense文書は確認できていないため、再配布する場合はupstream Apache-2.0 noticeとrelease artifact条件を再確認してください。
 
 ## 10. Android Build / USB Serial
 
@@ -141,19 +207,27 @@ implementation 'com.github.mik3y:usb-serial-for-android:3.11.0'
 - AndroidX dependencyは選択したUnity / Android Gradle Plugin構成で解決
 - `Assets/Plugins/Android/baseProjectTemplate.gradle`はR8 `8.13.19`を`Assets/Plugins/Android/BuildTools/r8-8.13.19.jar`から読む設定
 
-R8 JARはRepositoryに収録しません。R8 upstreamはversion指定prebuiltをGoogle Mavenまたは公式`r8-releases` bucketから取得でき、未処理版JARの公式URL形式は次です。
+R8 JARはRepositoryに収録しません。R8 upstreamはversion指定prebuiltをGoogle Mavenまたは公式`r8-releases` bucketから取得できます。
 
 ```text
-https://storage.googleapis.com/r8-releases/raw/<version>/r8.jar
+https://storage.googleapis.com/r8-releases/raw/8.13.19/r8.jar
 ```
 
-このProjectでは`<version>`に`8.13.19`を使用し、取得したJARを次へ配置する構成です。
+配置Path:
 
 ```text
 Assets/Plugins/Android/BuildTools/r8-8.13.19.jar
 ```
 
-R8 upstream LicenseはBSD 3-Clause形式です。Public v0.1ではJARを再配布しないため、取得したexact artifactのchecksum固定はまだ行っておらず`REVIEW REQUIRED`です。Android Body TransportはUSB SerialとBluetoothを選択可能であり、Bluetoothを削除・USBへ置換しないでください。
+Validation fingerprint:
+
+```text
+R8: 8.13.19
+Version commit: 4ab5d6fdeb2fdaa29021e03d0ee02219e53e39fd
+SHA-256: 7712EDBAE6A71F35937FFC1BD5F4C202919EF2A5E58D3C3544015A868A3CF457
+```
+
+R8 upstream LicenseはBSD 3-Clauseです。Public v0.1ではJARを再配布しません。Android Body TransportはUSB SerialとBluetoothを選択可能であり、Bluetoothを削除・USBへ置換しないでください。
 
 ## 11. Arduino Firmware
 
@@ -163,7 +237,9 @@ R8 upstream LicenseはBSD 3-Clause形式です。Public v0.1ではJARを再配�
 - Adafruit PWM Servo Driver Library（Validation側確認版`3.0.3`）
 - Adafruit BusIO（Validation側確認版`1.17.4`）
 
-Firmwareの詳細は[`Firmware/.../README.md`](Firmware/Arduino/BODYLOBO/Salieri_BODYLOBO_Unified_PCA9685_10Servo_115200/README.md)を参照してください。Public v0.1のArduino compileは`NOT RUN`です。
+Validation PCにはArduino AVR Boards `1.8.6`が導入されています。ただしPublic v0.1 Firmwareはまだcompileしていないため、`1.8.6`を「実際にcompile済みのCore Version」とは表記しません。Firmware Compile statusは引き続き`NOT RUN`です。
+
+Firmwareの詳細は[`Firmware/.../README.md`](Firmware/Arduino/BODYLOBO/Salieri_BODYLOBO_Unified_PCA9685_10Servo_115200/README.md)を参照してください。
 
 ## 12. Maintenance / Optional Scenes
 
