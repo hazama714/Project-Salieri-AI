@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Project Salieri AI — AIキャラクターに現実の身体を与えるためのPhysical AI Runtime。">
+  <meta name="description" content="Project Salieri AI — AIキャラクターに現実の身体を与えるためのPhysical AI Runtime。Physical AI Runtime for giving AI characters a body in the real world.">
   <meta name="theme-color" content="#0b1020">
   <title>Project Salieri AI | Physical AI Runtime</title>
   <link rel="stylesheet" href="style.css">
@@ -13,11 +13,11 @@
     <div class="container header-inner">
       <a class="brand" href="#top">Project Salieri AI</a>
       <nav aria-label="Primary navigation">
-        <a href="#concept">Concept</a>
-        <a href="#features">Features</a>
-        <a href="#architecture">Architecture</a>
-        <a href="#build">Build</a>
-        <a href="#community">Community</a>
+        <a href="#concept">コンセプト / Concept</a>
+        <a href="#features">機能 / Features</a>
+        <a href="#architecture">構成 / Architecture</a>
+        <a href="#build">構築 / Build</a>
+        <a href="#community">コミュニティ / Community</a>
       </nav>
     </div>
   </header>
@@ -28,9 +28,14 @@
         <div>
           <p class="eyebrow">Physical AI Runtime · Public v0.1</p>
           <h1>AIキャラクターに<br>現実の身体を与える。</h1>
+          <p class="hero-title-en" lang="en">Give AI characters a body in the real world.</p>
           <p class="lead">
             Project Salieri AIは、視覚・注意・会話・身体表現・実機制御をひとつの流れにつなぎ、
             AIキャラクターを現実世界の身体へ接続するためのPhysical AI Runtimeです。
+          </p>
+          <p class="lead lang-en" lang="en">
+            Project Salieri AI is a Physical AI Runtime that connects perception, attention,
+            conversation, bodily expression, and physical control into one execution path for bringing AI characters into the real world.
           </p>
           <div class="actions">
             <a class="button primary" href="https://github.com/hazama714/Project-Salieri-AI">GitHub Repository</a>
@@ -39,64 +44,71 @@
         </div>
 
         <div class="flow-card" aria-label="Project Salieri AI flow">
-          <div class="flow-node"><span>01</span><strong>Seeing</strong><small>Face / Object Perception</small></div>
+          <div class="flow-node"><span>01</span><strong>視覚 / Seeing</strong><small>Face / Object Perception</small></div>
           <div class="flow-arrow">↓</div>
-          <div class="flow-node"><span>02</span><strong>Attention</strong><small>World Target / Focus</small></div>
+          <div class="flow-node"><span>02</span><strong>注意 / Attention</strong><small>World Target / Focus</small></div>
           <div class="flow-arrow">↓</div>
-          <div class="flow-node"><span>03</span><strong>Conversation</strong><small>Cloud / Local Routing</small></div>
+          <div class="flow-node"><span>03</span><strong>会話 / Conversation</strong><small>Cloud / Local Routing</small></div>
           <div class="flow-arrow">↓</div>
-          <div class="flow-node"><span>04</span><strong>Body Action</strong><small>LOOK / POINT / Free Pose</small></div>
+          <div class="flow-node"><span>04</span><strong>身体動作 / Body Action</strong><small>LOOK / POINT / Free Pose</small></div>
           <div class="flow-arrow">↓</div>
-          <div class="flow-node"><span>05</span><strong>Physical</strong><small>Arduino / Servo</small></div>
+          <div class="flow-node"><span>05</span><strong>実機 / Physical</strong><small>Arduino / Servo</small></div>
         </div>
       </div>
     </section>
 
     <section id="concept" class="section">
       <div class="container narrow">
-        <p class="eyebrow">Concept</p>
+        <p class="eyebrow">コンセプト / Concept</p>
         <h2>仮想キャラクターを、そのまま現実世界へ。</h2>
+        <p class="heading-en" lang="en">Bring the virtual character directly into the physical world.</p>
         <p class="section-intro">
           VRMで表現されるキャラクターの視線・ポーズ・身体動作を、VirtualBodyとPhysical Retargetを通して
-          実際のロボットへ伝えます。ROSのような大規模な基盤を前提とせず、Unity、Arduino、一般的なサーボを使って
-          キャラクター主体のPhysical AIを構築することを目指しています。
+          実際のロボットへ伝えます。Unity、Arduino、一般的なサーボを使い、キャラクター主体のPhysical AIを
+          構築しやすい形にすることを目指しています。
+        </p>
+        <p class="section-intro lang-en" lang="en">
+          Character gaze, pose, and body motion represented in VRM are transferred through VirtualBody and Physical Retarget
+          to a real robot. The project aims to make character-centered Physical AI approachable with Unity, Arduino, and commonly available servos.
         </p>
       </div>
     </section>
 
     <section id="features" class="section alt">
       <div class="container">
-        <p class="eyebrow">Current Features</p>
+        <p class="eyebrow">現在の機能 / Current Features</p>
         <h2>Public v0.1で公開している主要機能</h2>
+        <p class="heading-en" lang="en">Major capabilities included in Public v0.1</p>
         <div class="feature-grid">
-          <article class="card"><p class="card-kicker">01</p><h3>Perception & Attention</h3><p>Face / Object Detection、追跡、Attention Targetによって「何を見るか」を扱います。</p></article>
-          <article class="card"><p class="card-kicker">02</p><h3>Conversation</h3><p>会話入力からCloud / Localの実行経路へつなぎ、反応生成と身体動作へ接続します。</p></article>
-          <article class="card"><p class="card-kicker">03</p><h3>Memory Foundation</h3><p>Experience Record、Recall、World Memoryなど、経験を保持するための基盤を含みます。</p></article>
-          <article class="card"><p class="card-kicker">04</p><h3>Free Pose</h3><p>LLMまたは決定論ルートから手のターゲットを選び、自由なポーズ表現へ接続します。</p></article>
-          <article class="card"><p class="card-kicker">05</p><h3>VRM / IK / VirtualBody</h3><p>VRMの見た目とIKを使いながら、物理制御用VirtualBodyへ動作を写像します。</p></article>
-          <article class="card"><p class="card-kicker">06</p><h3>Physical Control</h3><p>Physical Retarget、Safety、USB Serial / Bluetoothを通してArduinoとサーボへ出力します。</p></article>
+          <article class="card"><p class="card-kicker">01</p><h3>知覚と注意 / Perception &amp; Attention</h3><p>Face / Object Detection、追跡、Attention Targetによって「何を見るか」を扱います。</p><p class="lang-en" lang="en">Handles what the character should look at through face/object detection, tracking, and attention targets.</p></article>
+          <article class="card"><p class="card-kicker">02</p><h3>会話 / Conversation</h3><p>会話入力からCloud / Localの実行経路へつなぎ、反応生成と身体動作へ接続します。</p><p class="lang-en" lang="en">Routes conversation input through cloud or local paths and connects generated responses to body actions.</p></article>
+          <article class="card"><p class="card-kicker">03</p><h3>記憶基盤 / Memory Foundation</h3><p>Experience Record、Recall、World Memoryなど、経験を保持するための基盤を含みます。</p><p class="lang-en" lang="en">Includes foundations for retaining experience, such as Experience Record, Recall, and World Memory.</p></article>
+          <article class="card"><p class="card-kicker">04</p><h3>自由ポーズ / Free Pose</h3><p>LLMまたは決定論ルートから手のターゲットを選び、自由なポーズ表現へ接続します。</p><p class="lang-en" lang="en">Selects hand targets through LLM or deterministic routes and connects them to free-form posing.</p></article>
+          <article class="card"><p class="card-kicker">05</p><h3>VRM / IK / VirtualBody</h3><p>VRMの見た目とIKを使いながら、物理制御用VirtualBodyへ動作を写像します。</p><p class="lang-en" lang="en">Maps character motion from VRM and IK into the VirtualBody used for physical control.</p></article>
+          <article class="card"><p class="card-kicker">06</p><h3>実機制御 / Physical Control</h3><p>Physical Retarget、Safety、USB Serial / Bluetoothを通してArduinoとサーボへ出力します。</p><p class="lang-en" lang="en">Outputs to Arduino and servos through Physical Retarget, safety controls, USB Serial, and Bluetooth.</p></article>
         </div>
       </div>
     </section>
 
     <section id="architecture" class="section">
       <div class="container">
-        <p class="eyebrow">Architecture</p>
+        <p class="eyebrow">構成 / Architecture</p>
         <h2>AIからサーボまでを、一つの実行経路に。</h2>
+        <p class="heading-en" lang="en">One execution path from AI to servo.</p>
         <div class="architecture">
-          <div class="arch-item"><strong>Seeing</strong><span>Camera / STT / Perception</span></div>
+          <div class="arch-item"><strong>視覚 / Seeing</strong><span>Camera / STT / Perception</span></div>
           <div class="arch-arrow">→</div>
-          <div class="arch-item"><strong>Attention</strong><span>Target / World Context</span></div>
+          <div class="arch-item"><strong>注意 / Attention</strong><span>Target / World Context</span></div>
           <div class="arch-arrow">→</div>
-          <div class="arch-item"><strong>Conversation</strong><span>Cloud / Local</span></div>
+          <div class="arch-item"><strong>会話 / Conversation</strong><span>Cloud / Local</span></div>
           <div class="arch-arrow">→</div>
-          <div class="arch-item"><strong>Body Action</strong><span>LOOK / POINT / Pose</span></div>
+          <div class="arch-item"><strong>身体動作 / Body Action</strong><span>LOOK / POINT / Pose</span></div>
           <div class="arch-arrow">→</div>
           <div class="arch-item"><strong>VRM / IK</strong><span>Character Motion</span></div>
           <div class="arch-arrow">→</div>
           <div class="arch-item"><strong>VirtualBody</strong><span>Joint Constraints</span></div>
           <div class="arch-arrow">→</div>
-          <div class="arch-item"><strong>Physical</strong><span>Arduino / Servo</span></div>
+          <div class="arch-item"><strong>実機 / Physical</strong><span>Arduino / Servo</span></div>
         </div>
       </div>
     </section>
@@ -104,22 +116,27 @@
     <section id="build" class="section alt">
       <div class="container split-panel">
         <div>
-          <p class="eyebrow">Build it</p>
+          <p class="eyebrow">構築 / Build it</p>
           <h2>自分のキャラクターとボディで試す。</h2>
+          <p class="heading-en" lang="en">Try it with your own character and body.</p>
           <p>
             Public v0.1は完成済みのターンキー製品ではなく、主要なRuntime Sourceと自作VirtualBody、
             Arduino Firmwareを公開した開発者向けの公開版です。利用者は自身のVRMと必要な外部依存関係を用意します。
           </p>
+          <p class="lang-en" lang="en">
+            Public v0.1 is a developer-oriented public release rather than a turnkey package. It includes major runtime source,
+            original VirtualBody assets, and Arduino firmware. Users provide their own VRM and required external dependencies.
+          </p>
           <div class="actions">
-            <a class="button primary" href="https://github.com/hazama714/Project-Salieri-AI#readme">Read README</a>
-            <a class="button secondary" href="https://github.com/hazama714/Project-Salieri-AI/blob/main/DEPENDENCIES.md">Dependencies</a>
+            <a class="button primary" href="https://github.com/hazama714/Project-Salieri-AI#readme">READMEを読む / Read README</a>
+            <a class="button secondary" href="https://github.com/hazama714/Project-Salieri-AI/blob/main/DEPENDENCIES.md">依存関係 / Dependencies</a>
           </div>
         </div>
         <div class="build-list">
-          <div><span>01</span><p><strong>Unity / PC</strong><br>Runtimeの中心環境。</p></div>
-          <div><span>02</span><p><strong>Your VRM</strong><br>キャラクターは利用者自身が用意。</p></div>
-          <div><span>03</span><p><strong>Arduino + PCA9685</strong><br>一般的なサーボ制御へ接続。</p></div>
-          <div><span>04</span><p><strong>VirtualBody</strong><br>仮想身体と物理身体をつなぐ中間表現。</p></div>
+          <div><span>01</span><p><strong>Unity / PC</strong><br>Runtimeの中心環境。<br><span class="lang-en" lang="en">Primary runtime environment.</span></p></div>
+          <div><span>02</span><p><strong>Your VRM</strong><br>キャラクターは利用者自身が用意。<br><span class="lang-en" lang="en">Bring your own character.</span></p></div>
+          <div><span>03</span><p><strong>Arduino + PCA9685</strong><br>一般的なサーボ制御へ接続。<br><span class="lang-en" lang="en">Connects to common servo-control hardware.</span></p></div>
+          <div><span>04</span><p><strong>VirtualBody</strong><br>仮想身体と物理身体をつなぐ中間表現。<br><span class="lang-en" lang="en">Intermediate representation linking virtual and physical bodies.</span></p></div>
         </div>
       </div>
     </section>
@@ -127,16 +144,21 @@
     <section id="community" class="section compact">
       <div class="container callout">
         <div>
-          <p class="eyebrow">Community / Development Notes</p>
+          <p class="eyebrow">コミュニティ / Community &amp; Development Notes</p>
           <h2>製作中の記録を、そのまま共有する。</h2>
+          <p class="heading-en" lang="en">Share the development process as it happens.</p>
           <p>
             DiscordはProject Salieri AIの製作中メモ兼コミュニティです。開発の進捗、実装時の判断、
             具体的なCodexへの指示などを記録しています。質問・相談・雑談も歓迎しています。
           </p>
+          <p class="lang-en" lang="en">
+            The Discord server is both a development notebook and a community space for Project Salieri AI. It includes progress updates,
+            implementation decisions, concrete Codex instructions, as well as questions, consultation, and casual discussion.
+          </p>
         </div>
         <div class="actions">
-          <a class="button primary" href="https://discord.gg/tJhNYX4sfB" target="_blank" rel="noopener noreferrer">Join Discord</a>
-          <a class="button secondary" href="https://github.com/hazama714/Project-Salieri-AI">Open GitHub</a>
+          <a class="button primary" href="https://discord.gg/tJhNYX4sfB" target="_blank" rel="noopener noreferrer">Discordに参加 / Join Discord</a>
+          <a class="button secondary" href="https://github.com/hazama714/Project-Salieri-AI">GitHubを開く / Open GitHub</a>
           <a class="button secondary" href="https://hazama714.github.io/">Studio Hazama 714</a>
         </div>
       </div>
