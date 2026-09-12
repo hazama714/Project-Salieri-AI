@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Project Salieri AI — AIキャラクターに現実の身体を与えるためのPhysical AI Runtime。Physical AI Runtime for giving AI characters a body in the real world.">
+  <meta name="description" content="Project Salieri AI — AIキャラクターに現実の身体を与えるためのDIY Physical AI Runtime。Physical AI Runtime for giving AI characters a body in the real world.">
   <meta name="theme-color" content="#0b1020">
   <title>Project Salieri AI | Physical AI Runtime</title>
   <link rel="stylesheet" href="style.css">
@@ -14,6 +14,8 @@
       <a class="brand" href="#top">Project Salieri AI</a>
       <nav aria-label="Primary navigation">
         <a href="#concept">コンセプト / Concept</a>
+        <a href="#why">想い / Why</a>
+        <a href="#diy">DIY</a>
         <a href="#features">機能 / Features</a>
         <a href="#architecture">構成 / Architecture</a>
         <a href="#build">構築 / Build</a>
@@ -26,7 +28,7 @@
     <section class="hero">
       <div class="container hero-grid">
         <div>
-          <p class="eyebrow">Physical AI Runtime · Public v0.1</p>
+          <p class="eyebrow">DIY Physical AI Runtime · Public v0.1</p>
           <h1>AIキャラクターに<br>現実の身体を与える。</h1>
           <p class="hero-title-en" lang="en">Give AI characters a body in the real world.</p>
           <p class="lead">
@@ -65,12 +67,77 @@
         <p class="section-intro">
           VRMで表現されるキャラクターの視線・ポーズ・身体動作を、VirtualBodyとPhysical Retargetを通して
           実際のロボットへ伝えます。Unity、Arduino、一般的なサーボを使い、キャラクター主体のPhysical AIを
-          構築しやすい形にすることを目指しています。
+          個人でも組み上げやすい形にすることを目指しています。
         </p>
         <p class="section-intro lang-en" lang="en">
           Character gaze, pose, and body motion represented in VRM are transferred through VirtualBody and Physical Retarget
           to a real robot. The project aims to make character-centered Physical AI approachable with Unity, Arduino, and commonly available servos.
         </p>
+        <p class="section-intro">
+          LLMは「右を見る」「近づく」「手を伸ばす」といった意味を理解できますが、現実の角度、可動域、速度、
+          現在姿勢、他部位との干渉、安全性までをそのまま任せることはできません。そこでProject Salieri AIでは、
+          AIが扱う意味や意図と、現実の身体が必要とする具体的な制御の間にRuntimeを置き、安全に翻訳します。
+        </p>
+        <p class="section-intro lang-en" lang="en">
+          An LLM can understand intentions such as looking right, approaching, or reaching out, but physical angles, joint limits,
+          current posture, interference, speed, and safety must be handled separately. Project Salieri AI places a runtime between AI intent
+          and physical motion to translate those abstractions into constrained real-world control.
+        </p>
+      </div>
+    </section>
+
+    <section id="why" class="section alt">
+      <div class="container narrow">
+        <p class="eyebrow">このプロジェクトへの想い / Why</p>
+        <h2>人と共存するAIロボットを、日本から。</h2>
+        <p class="heading-en" lang="en">Building AI robots that can live alongside people.</p>
+        <p class="section-intro">
+          日本の漫画やアニメは、ロボットを単なる作業機械ではなく、友達、家族、相棒として描いてきました。
+          人のそばにいて、話し、笑い、ときには支えてくれる存在です。
+        </p>
+        <p class="section-intro">
+          いま、AI、音声認識、音声合成、視覚認識、3Dキャラクター制御、マイコン、サーボといった技術は、
+          個人でも触れられるところまで来ています。だからこそ、想像するだけだった「人と一緒にいるロボット」を、
+          実際に自分たちの手で作る側へ進めたいと考えています。
+        </p>
+        <p class="section-intro">
+          Project Salieri AIが目指しているのは、単にロボットへAIを載せることではありません。
+          <strong>画面の中で生きていたAIキャラクターに、現実世界で表現できる身体を与えること。</strong>
+          それがこのプロジェクトの出発点です。
+        </p>
+        <p class="section-intro lang-en" lang="en">
+          Japanese stories have long imagined robots not only as machines, but as companions. Today, AI, speech, vision,
+          character animation, microcontrollers, and servo control have become accessible enough for individuals to experiment with them.
+          Project Salieri AI starts from a character-first idea: not simply putting AI into a robot, but giving an AI character a body through which it can act in the real world.
+        </p>
+      </div>
+    </section>
+
+    <section id="diy" class="section">
+      <div class="container split-panel">
+        <div>
+          <p class="eyebrow">DIY Physical AI</p>
+          <h2>ゲーム制作者が、AIロボット開発者にもなれる時代へ。</h2>
+          <p class="heading-en" lang="en">From character creation to robot development.</p>
+          <p>
+            ゲーム制作では、キャラクターに表情をつけ、状態を管理し、入力に反応させ、音声やアニメーションを再生します。
+            AIロボットでも、人の声を聞く、相手を見る、状態を判断する、返事をする、身体を動かすという流れが必要です。
+          </p>
+          <p>
+            Project Salieri AIは、Unityで培われてきたキャラクター制御の考え方を現実の身体へ延長します。
+            VRChat、3Dアバター、Unity、AIキャラクターに触れてきた人が、その経験をロボット開発へ持ち込める入口を作ります。
+          </p>
+          <p class="lang-en" lang="en">
+            Game and character development already deal with expressions, state, reactions, animation, and voice.
+            Project Salieri AI extends those familiar ideas into physical bodies, creating a path from Unity and virtual-character creation into robotics.
+          </p>
+        </div>
+        <div class="build-list">
+          <div><span>01</span><p><strong>Unity / VRM</strong><br>キャラクター、表情、視線、IK、状態を扱う。</p></div>
+          <div><span>02</span><p><strong>Arduino / PCA9685</strong><br>入手しやすいマイコンとサーボ制御基板を使う。</p></div>
+          <div><span>03</span><p><strong>General Servos</strong><br>高価な専用品だけに依存せず、一般的なサーボで試す。</p></div>
+          <div><span>04</span><p><strong>3D Printed Body</strong><br>自分で部品を作り、身体そのものも改造していく。</p></div>
+        </div>
       </div>
     </section>
 
@@ -117,15 +184,19 @@
       <div class="container split-panel">
         <div>
           <p class="eyebrow">構築 / Build it</p>
-          <h2>自分のキャラクターとボディで試す。</h2>
-          <p class="heading-en" lang="en">Try it with your own character and body.</p>
+          <h2>完成品を買うのではなく、自分のキャラクターとボディを作る。</h2>
+          <p class="heading-en" lang="en">Build it around your own character and body.</p>
           <p>
             Public v0.1は完成済みのターンキー製品ではなく、主要なRuntime Sourceと自作VirtualBody、
             Arduino Firmwareを公開した開発者向けの公開版です。利用者は自身のVRMと必要な外部依存関係を用意します。
           </p>
+          <p>
+            目指しているのは、全員が同じロボットを作ることではありません。キャラクター、身体形状、サーボ構成、
+            表現、会話、記憶を、それぞれの開発者や表現者が自分の得意分野から改良していける「開発土壌」を共有することです。
+          </p>
           <p class="lang-en" lang="en">
-            Public v0.1 is a developer-oriented public release rather than a turnkey package. It includes major runtime source,
-            original VirtualBody assets, and Arduino firmware. Users provide their own VRM and required external dependencies.
+            Public v0.1 is a developer-oriented public release rather than a turnkey package. The goal is not for everyone to build the same robot,
+            but to share a foundation that can be adapted to different characters, bodies, servo layouts, expressions, conversation systems, and memory designs.
           </p>
           <div class="actions">
             <a class="button primary" href="https://github.com/hazama714/Project-Salieri-AI#readme">READMEを読む / Read README</a>
@@ -151,9 +222,13 @@
             DiscordはProject Salieri AIの製作中メモ兼コミュニティです。開発の進捗、実装時の判断、
             具体的なCodexへの指示などを記録しています。質問・相談・雑談も歓迎しています。
           </p>
+          <p>
+            ソースコードだけでなく、「なぜこの構造にしたのか」「どこで失敗したのか」「どう直したのか」という
+            開発過程そのものも、Project Salieri AIの重要な成果だと考えています。
+          </p>
           <p class="lang-en" lang="en">
-            The Discord server is both a development notebook and a community space for Project Salieri AI. It includes progress updates,
-            implementation decisions, concrete Codex instructions, as well as questions, consultation, and casual discussion.
+            The Discord server is both a development notebook and a community space for Project Salieri AI. Beyond source code,
+            the project also values the reasoning, failures, corrections, and design decisions that shaped the runtime.
           </p>
         </div>
         <div class="actions">
