@@ -6,9 +6,18 @@ Copyright (c) 2026 Studio Hazama 714
 
 1. Scope
 
-This license applies only to Project Salieri AI source files that expressly
+This license applies to Project Salieri AI source files that expressly
 identify this license, including by the SPDX identifier
-LicenseRef-Project-Salieri-1.0 (the "Software").
+LicenseRef-Project-Salieri-1.0, and to the following Studio Hazama 714
+original VirtualBody assets included in this repository (collectively, the
+"Software"):
+
+- Assets/LobBodyModels/RobotBody/Asis3D_3_Vbody.fbx
+- Assets/LobBodyModels/RobotBody/AILob.fbx
+
+The two VirtualBody assets listed above are original Studio Hazama 714 works,
+are not Avatar-derived assets, and are licensed under the same terms as the
+Software unless Studio Hazama 714 expressly states otherwise in writing.
 
 This license is a source-available license. It is not an OSI-approved open
 source license.
