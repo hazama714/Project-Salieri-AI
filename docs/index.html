@@ -75,14 +75,13 @@
           to a real robot. The project aims to make character-centered Physical AI approachable with Unity, Arduino, and commonly available servos.
         </p>
         <p class="section-intro">
-          LLMは「右を見る」「近づく」「手を伸ばす」といった意味を理解できますが、現実の角度、可動域、速度、
-          現在姿勢、他部位との干渉、安全性までをそのまま任せることはできません。そこでProject Salieri AIでは、
-          AIが扱う意味や意図と、現実の身体が必要とする具体的な制御の間にRuntimeを置き、安全に翻訳します。
+          Project Salieri AIでは、AIが扱う意味や意図、キャラクターとしての身体動作、VirtualBody、
+          Physical Retarget / Safety、実機通信を役割ごとのレイヤーに分けています。
+          それぞれを独立した責任として扱うことで、AI、キャラクター表現、身体構造、Hardwareを段階的に差し替え・拡張できる構成を目指しています。
         </p>
         <p class="section-intro lang-en" lang="en">
-          An LLM can understand intentions such as looking right, approaching, or reaching out, but physical angles, joint limits,
-          current posture, interference, speed, and safety must be handled separately. Project Salieri AI places a runtime between AI intent
-          and physical motion to translate those abstractions into constrained real-world control.
+          Project Salieri AI separates semantic intent, character motion, VirtualBody, physical retargeting and safety,
+          and hardware communication into distinct layers so that AI, character expression, body structure, and hardware can evolve independently.
         </p>
       </div>
     </section>
@@ -161,36 +160,76 @@
     <section id="architecture" class="section">
       <div class="container">
         <p class="eyebrow">構成 / Architecture</p>
-        <h2>AIからサーボまでを、一つの実行経路に。</h2>
-        <p class="heading-en" lang="en">One execution path from AI to servo.</p>
-        <div class="architecture">
-          <div class="arch-item"><strong>視覚 / Seeing</strong><span>Camera / STT / Perception</span></div>
+        <h2>意味から身体へ。役割をレイヤーで分ける。</h2>
+        <p class="heading-en" lang="en">A layered path from perception and intent to the physical body.</p>
+
+        <div class="layer-map">
+          <div class="layer-stack" aria-label="Project Salieri AI layer model">
+            <div class="layer-row"><span class="layer-num">L1</span><strong>Perception</strong><small>Camera / Face / Object / STT</small></div>
+            <div class="layer-arrow">↓</div>
+            <div class="layer-row"><span class="layer-num">L2</span><strong>Attention / Conversation / Intent</strong><small>Orientation / LLM / Body Intent</small></div>
+            <div class="layer-arrow">↓</div>
+            <div class="layer-row"><span class="layer-num">L3</span><strong>Character Motion</strong><small>VRM / Animator IK / LOOK / POINT / Free Pose</small></div>
+            <div class="layer-arrow">↓</div>
+            <div class="layer-row"><span class="layer-num">L4</span><strong>VirtualBody</strong><small>Joint Constraints / Body Representation</small></div>
+            <div class="layer-arrow">↓</div>
+            <div class="layer-row"><span class="layer-num">L5</span><strong>Physical Retarget / Safety</strong><small>Mapping / Clamp / Authority / Permission</small></div>
+            <div class="layer-arrow">↓</div>
+            <div class="layer-row"><span class="layer-num">L6</span><strong>Communication</strong><small>BodyCommandCoordinator / Serial / USB / Bluetooth</small></div>
+            <div class="layer-arrow">↓</div>
+            <div class="layer-row"><span class="layer-num">L7</span><strong>Hardware</strong><small>Arduino / PCA9685 / Servo / Physical Body</small></div>
+          </div>
+
+          <div class="layer-note">
+            <div>
+              <p class="eyebrow">Layer Principle</p>
+              <h3>上位ほど「意味」、下位ほど「身体固有」</h3>
+              <p>
+                上位レイヤーでは、何を見るか、何を話すか、どの動作を選ぶかを扱います。
+                下位へ進むほど、身体構造、可動域、Servo設定、通信方式など実機固有の責任へ移ります。
+              </p>
+            </div>
+            <div class="layer-axis">
+              <div><strong>Semantic Side</strong><span>認知・注意・会話・意図</span></div>
+              <div><strong>Embodiment Boundary</strong><span>Character Motion → VirtualBody</span></div>
+              <div><strong>Physical Side</strong><span>Retarget / Safety → Hardware</span></div>
+            </div>
+          </div>
+        </div>
+
+        <p class="section-intro">
+          このレイヤーモデルは、Project Salieri AI独自の技術だけを並べたものではありません。
+          Perception、IK、通信など他のAI・ゲーム・ロボットプロジェクトと共通する領域も含みます。
+          その上で、Project Salieri AIではそれらをAIキャラクターから実身体まで連続したRuntimeとして接続し、
+          VirtualBodyやAuthority / Safety境界を含めて現在のProductionへ実装しています。
+        </p>
+
+        <p class="flow-label">Current Free Pose Example</p>
+        <div class="architecture" aria-label="Current Free Pose example flow">
+          <div class="arch-item"><strong>Semantic Target</strong><span>Target Selection</span></div>
           <div class="arch-arrow">→</div>
-          <div class="arch-item"><strong>注意 / Attention</strong><span>Target / World Context</span></div>
-          <div class="arch-arrow">→</div>
-          <div class="arch-item"><strong>会話 / Conversation</strong><span>Cloud / Local</span></div>
-          <div class="arch-arrow">→</div>
-          <div class="arch-item"><strong>身体動作 / Body Action</strong><span>LOOK / POINT / Pose</span></div>
+          <div class="arch-item"><strong>Free Pose</strong><span>Pose Request</span></div>
           <div class="arch-arrow">→</div>
           <div class="arch-item"><strong>VRM / IK</strong><span>Character Motion</span></div>
           <div class="arch-arrow">→</div>
           <div class="arch-item"><strong>VirtualBody</strong><span>Joint Constraints</span></div>
           <div class="arch-arrow">→</div>
-          <div class="arch-item"><strong>実機 / Physical</strong><span>Arduino / Servo</span></div>
+          <div class="arch-item"><strong>Retarget / Safety</strong><span>Physical Mapping</span></div>
+          <div class="arch-arrow">→</div>
+          <div class="arch-item"><strong>Transport</strong><span>Serial / USB / Bluetooth</span></div>
+          <div class="arch-arrow">→</div>
+          <div class="arch-item"><strong>Physical Body</strong><span>Arduino / Servo</span></div>
         </div>
-        <p class="section-intro">
-          上位では「何を見るか」「何を話すか」「どの動作を選ぶか」といった意味を扱い、下位へ進むほど、
-          VRM・IK・VirtualBody・実機ごとの可動域・Servo設定・通信方式といった身体固有の処理へ移ります。
-          このレイヤー構成によって、AI、キャラクター表現、実機制御をそれぞれ独立して改良しやすくしています。
-        </p>
+
         <p class="section-intro">
           現在のFree Poseでは、Unity空間に用意したSemantic Targetを選択し、そのTargetをもとに腕のIKへ接続します。
           解決されたキャラクターの動きはVirtualBodyへ反映され、Physical Retargetを経て実機へ伝達されます。
           これは現在の主要方式の一つであり、将来の身体制御をIKだけに限定するものではありません。
         </p>
         <p class="section-intro lang-en" lang="en">
-          Higher layers handle meaning and intent, while lower layers increasingly handle body-specific motion, retargeting, safety, transport, and hardware constraints.
-          In the current Free Pose route, semantic targets are selected in Unity, solved through arm IK, reflected into the VirtualBody, and then transferred to the physical body through the retargeting layer.
+          The layer model includes both familiar building blocks and Project Salieri-specific integration boundaries.
+          In the current Free Pose route, semantic targets are selected in Unity, solved through arm IK, reflected into the VirtualBody,
+          and then transferred through retargeting, safety, communication, and the physical body.
         </p>
         <div class="actions">
           <a class="button primary" href="https://github.com/hazama714/Project-Salieri-AI/blob/main/START_HERE.md">全体構造を見る / Start Here</a>
