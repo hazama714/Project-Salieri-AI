@@ -177,6 +177,24 @@
           <div class="arch-arrow">→</div>
           <div class="arch-item"><strong>実機 / Physical</strong><span>Arduino / Servo</span></div>
         </div>
+        <p class="section-intro">
+          上位では「何を見るか」「何を話すか」「どの動作を選ぶか」といった意味を扱い、下位へ進むほど、
+          VRM・IK・VirtualBody・実機ごとの可動域・Servo設定・通信方式といった身体固有の処理へ移ります。
+          このレイヤー構成によって、AI、キャラクター表現、実機制御をそれぞれ独立して改良しやすくしています。
+        </p>
+        <p class="section-intro">
+          現在のFree Poseでは、Unity空間に用意したSemantic Targetを選択し、そのTargetをもとに腕のIKへ接続します。
+          解決されたキャラクターの動きはVirtualBodyへ反映され、Physical Retargetを経て実機へ伝達されます。
+          これは現在の主要方式の一つであり、将来の身体制御をIKだけに限定するものではありません。
+        </p>
+        <p class="section-intro lang-en" lang="en">
+          Higher layers handle meaning and intent, while lower layers increasingly handle body-specific motion, retargeting, safety, transport, and hardware constraints.
+          In the current Free Pose route, semantic targets are selected in Unity, solved through arm IK, reflected into the VirtualBody, and then transferred to the physical body through the retargeting layer.
+        </p>
+        <div class="actions">
+          <a class="button primary" href="https://github.com/hazama714/Project-Salieri-AI/blob/main/START_HERE.md">全体構造を見る / Start Here</a>
+          <a class="button secondary" href="https://github.com/hazama714/Project-Salieri-AI/blob/main/SOURCE_GUIDE.md">主要SourceとFlow / Source Guide</a>
+        </div>
       </div>
     </section>
 
