@@ -18,6 +18,7 @@
         <a href="#diy">DIY</a>
         <a href="#features">機能 / Features</a>
         <a href="#architecture">構成 / Architecture</a>
+        <a href="#developer-docs">開発資料 / Docs</a>
         <a href="#build">構築 / Build</a>
         <a href="#community">コミュニティ / Community</a>
       </nav>
@@ -198,7 +199,42 @@
       </div>
     </section>
 
-    <section id="build" class="section alt">
+    <section id="developer-docs" class="section alt">
+      <div class="container">
+        <p class="eyebrow">開発者向け資料 / Developer Documentation</p>
+        <h2>全体像から、実際の改造箇所まで。</h2>
+        <p class="heading-en" lang="en">From architecture overview to practical modification points.</p>
+        <p class="section-intro">
+          Project Salieri AIを触ってみたい場合は、次の3資料を順番に読むと、全体像、Sourceの役割、実際に変更する場所を段階的につかめます。
+          502 Sourceを最初から追うのではなく、まず自分が変更したいレイヤーと実行経路を把握するための入口です。
+        </p>
+        <div class="feature-grid">
+          <article class="card">
+            <p class="card-kicker">01</p>
+            <h3>START HERE</h3>
+            <p>レイヤー構成、Runtime全体の流れ、VirtualBody、Free Pose、Physical Retargetなどを説明する最初の「地図」です。</p>
+            <p class="lang-en" lang="en">A first map of the runtime layers and overall execution flow.</p>
+            <div class="actions"><a class="button secondary" href="https://github.com/hazama714/Project-Salieri-AI/blob/main/START_HERE.md">読む / Read</a></div>
+          </article>
+          <article class="card">
+            <p class="card-kicker">02</p>
+            <h3>SOURCE GUIDE</h3>
+            <p>主要Sourceについて、役割、Input / Output、次に渡すSource、Authorityを機能単位で追うための資料です。</p>
+            <p class="lang-en" lang="en">Follow the major sources, responsibilities, inputs, outputs, and authorities.</p>
+            <div class="actions"><a class="button secondary" href="https://github.com/hazama714/Project-Salieri-AI/blob/main/SOURCE_GUIDE.md">読む / Read</a></div>
+          </article>
+          <article class="card">
+            <p class="card-kicker">03</p>
+            <h3>MODIFICATION GUIDE</h3>
+            <p>ポーズ、腕IK、首LOOK、Servo、通信、会話、認識、Memoryなど、目的別に「最初にどこを見るか」をまとめています。</p>
+            <p class="lang-en" lang="en">A practical guide to where to start when modifying each subsystem.</p>
+            <div class="actions"><a class="button secondary" href="https://github.com/hazama714/Project-Salieri-AI/blob/main/MODIFICATION_GUIDE.md">読む / Read</a></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="build" class="section">
       <div class="container split-panel">
         <div>
           <p class="eyebrow">構築 / Build it</p>
