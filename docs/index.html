@@ -7,6 +7,7 @@
   <meta name="theme-color" content="#0b1020">
   <title>Project Salieri AI | Physical AI Runtime</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="products.css">
 </head>
 <body>
   <header class="site-header">
@@ -19,6 +20,7 @@
         <a href="#features">機能 / Features</a>
         <a href="#architecture">構成 / Architecture</a>
         <a href="#developer-docs">開発資料 / Docs</a>
+        <a href="#products">プロダクト / Products</a>
         <a href="#build">構築 / Build</a>
         <a href="#community">コミュニティ / Community</a>
       </nav>
@@ -405,6 +407,92 @@
             <p class="lang-en" lang="en">A practical guide to where to start when modifying each subsystem.</p>
             <div class="actions"><a class="button secondary" href="https://github.com/hazama714/Project-Salieri-AI/blob/main/MODIFICATION_GUIDE.md">読む / Read</a></div>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="products" class="section">
+      <div class="container">
+        <p class="eyebrow">関連プロダクト / DIY Tools</p>
+        <h2>全部を作らなくても、一部分から始められる。</h2>
+        <p class="heading-en" lang="en">Start with one part of the system.</p>
+        <p class="section-intro">
+          Project Salieri AIへ至る開発の中から、AI・音声・キャラクター・サーボ制御を個別に試せるツールも公開しています。
+          完成したロボットを買うための製品群ではなく、DIY AIロボットを自分の手で試すための入口です。
+        </p>
+        <p class="section-intro lang-en" lang="en">
+          You do not need to build the whole system at once. These tools let you start with local AI, voice, VRM characters, or physical servo control.
+        </p>
+
+        <div class="product-grid">
+          <article class="card product-card">
+            <p class="card-kicker">01 / Local AI + Voice + VRM</p>
+            <h3>Android Unity Local AI VOICEVOX Kit VRM</h3>
+            <p>
+              Android実機上でローカルLLM、VOICEVOX音声合成、VRMアバター表示を組み合わせるUnity開発キットです。
+              AIキャラクターの「頭脳・声・姿」を一台のAndroid端末で試す入口として利用できます。
+            </p>
+            <p class="lang-en" lang="en">A Unity development kit for combining local LLM inference, VOICEVOX speech, and a VRM character on Android.</p>
+            <div class="actions">
+              <a class="button primary" href="https://otakunokaseki.booth.pm/items/8507259" target="_blank" rel="noopener noreferrer">BOOTHを見る / Open BOOTH</a>
+            </div>
+          </article>
+
+          <article class="card product-card">
+            <p class="card-kicker">02 / Local AI + Voice</p>
+            <h3>Android Unity Local AI VOICEVOX Kit</h3>
+            <p>
+              Android上でのローカルLLM推論とVOICEVOX音声合成を試すUnity開発キットです。
+              VRMを含めず、ローカルAIと音声の基本経路から始めたい場合の入口になります。
+            </p>
+            <p class="lang-en" lang="en">A focused Unity kit for trying local LLM inference and VOICEVOX speech synthesis on Android.</p>
+            <div class="actions">
+              <a class="button primary" href="https://otakunokaseki.booth.pm/items/8486640" target="_blank" rel="noopener noreferrer">BOOTHを見る / Open BOOTH</a>
+            </div>
+          </article>
+
+          <article class="card product-card">
+            <p class="card-kicker">03 / Physical Servo Control</p>
+            <h3>AibouMaker2 LoboServoController v1.0.0</h3>
+            <p>
+              PC / UnityからArduinoへ接続し、ロボットアームのサーボを操作・調整するためのDIYツールです。
+              AIや会話系からではなく、まずPhysical側を動かすところから始めたい人向けの入口です。
+            </p>
+            <p class="lang-en" lang="en">A DIY tool for starting from the physical side: controlling and calibrating robot-arm servos from PC / Unity through Arduino.</p>
+            <div class="actions">
+              <a class="button primary" href="https://otakunokaseki.booth.pm/items/7190172" target="_blank" rel="noopener noreferrer">BOOTHを見る / Open BOOTH</a>
+              <a class="button secondary" href="https://github.com/hazama714/LoboServoController" target="_blank" rel="noopener noreferrer">GitHubを見る / Open GitHub</a>
+            </div>
+          </article>
+
+          <article class="card product-card">
+            <p class="card-kicker">04 / Free Starter Tool</p>
+            <h3>LoboServoController v0.9.0-beta-LA</h3>
+            <p>
+              まずPCからArduinoとサーボを動かしてみるためのベータ版 / 導入用ツールです。
+              左腕側のサーボ制御から、実身体を動かす基本経路を試せます。
+            </p>
+            <p class="lang-en" lang="en">A beta starter tool for trying the basic PC → Arduino → servo path with a physical robot arm.</p>
+            <div class="actions">
+              <a class="button primary" href="https://otakunokaseki.booth.pm/items/7178376" target="_blank" rel="noopener noreferrer">BOOTHを見る / Open BOOTH</a>
+              <a class="button secondary" href="https://github.com/hazama714/LoboServoController" target="_blank" rel="noopener noreferrer">GitHubを見る / Open GitHub</a>
+            </div>
+          </article>
+        </div>
+
+        <div class="stack-closing product-note">
+          <p>
+            <strong>これらはProject Salieri AIの必須製品ではありません。</strong>
+            AI、Voice、Character、Physical BodyのどこからでもDIYを始められるように用意してきた関連ツールです。
+            Project Salieri AIは、それらの領域を一つのPhysical AI Runtimeとしてつないだ現在の統合プロジェクトです。
+          </p>
+          <p>
+            <strong>作り方は一つではありません。</strong>
+            別のAI、別のハードウェア、別のRuntimeを使っても構いません。自分なりのAIロボットを作ってみたら、Discordで共有してください。
+          </p>
+          <div class="actions">
+            <a class="button secondary" href="https://discord.gg/tJhNYX4sfB" target="_blank" rel="noopener noreferrer">Discordへ / Open Discord</a>
+          </div>
         </div>
       </div>
     </section>
