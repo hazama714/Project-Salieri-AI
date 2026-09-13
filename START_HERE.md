@@ -15,77 +15,83 @@ Project Salieri AIは、**AIキャラクターの知覚・会話・身体表現�
 
 ---
 
-## 1. まず全体像
+## 1. Project Salieri AIのレイヤーモデル
 
-Project Salieri AIでは、AI・キャラクター・ロボットを一つの処理として直接つなぐのではなく、役割ごとに段階を分けています。
+Project Salieri AIでは、AI・キャラクター・ロボットを一つの処理として直接つなぐのではなく、責任を次の7レイヤーへ分けて考えます。
 
 ```text
-Perception
-  ↓
-Attention / Conversation / Intent
-  ↓
-Character Motion
-  ↓
-VirtualBody
-  ↓
-Physical Retarget / Safety
-  ↓
-Communication
-  ↓
-Hardware
+L1  Perception
+      Camera / Face / Object / STT
+          ↓
+L2  Attention / Conversation / Intent
+      Orientation / LLM / Body Intent
+          ↓
+L3  Character Motion
+      VRM / Animator IK / LOOK / POINT / Free Pose
+          ↓
+L4  VirtualBody
+      Joint Constraints / Body Representation
+          ↓
+L5  Physical Retarget / Safety
+      Mapping / Clamp / Authority / Permission
+          ↓
+L6  Communication
+      BodyCommandCoordinator / Serial / USB / Bluetooth
+          ↓
+L7  Hardware
+      Arduino / PCA9685 / Servo / Physical Body
 ```
 
-上位では「誰を見るか」「何を話すか」「どの動作を選ぶか」といった意味を扱い、下位へ進むほど、身体構造、可動域、サーボ、通信方式など実機固有の事情を扱います。
+基本原則は、**上位ほど「意味や意図」を扱い、下位ほど「身体固有の事情」を扱う**ことです。
 
-このレイヤー分離によって、AI側、キャラクター側、ロボット側をそれぞれ改良しやすい構造を目指しています。
+```text
+Semantic Side
+  認知・注意・会話・意図
+        ↓
+Embodiment Boundary
+  Character Motion → VirtualBody
+        ↓
+Physical Side
+  Retarget / Safety → Communication → Hardware
+```
+
+Perception、IK、Serial通信などは他のAI・ゲーム・ロボットプロジェクトにも存在する一般的な領域です。Project Salieri AIでは、それらをAIキャラクターから実身体まで連続したRuntimeとして接続し、VirtualBodyやAuthority / Safety境界を含めてProductionへ実装しています。
 
 ---
 
 ## 2. 現在のProductionは大きく3系統
 
-現在のProduction SourceとMainScene上の有効Componentを追うと、主要経路は大きく次の3系統として見ることができます。
+Production SourceとMainScene上の有効Componentを追うと、主要経路は大きく次の3系統として見ることができます。
 
 ```text
 [認知・会話]
 Camera / STT / Text
-  → Perception
-  → Attention / Runtime
-  → Conversation / LLM
+  → L1 Perception
+  → L2 Attention / Conversation / Intent
 
 [仮想身体]
 Attention / Body Intent / Free Pose
-  → VRM / Animator IK
-  → VirtualBody
+  → L3 Character Motion
+  → L4 VirtualBody
 
 [実身体]
 VirtualBody / Commanded Joint State
-  → Physical Retarget / Safety
-  → BodyCommandCoordinator
-  → USB Serial / Bluetooth / PC Serial
-  → Arduino / Servo
+  → L5 Physical Retarget / Safety
+  → L6 Communication
+  → L7 Hardware
 ```
 
 すべての機能が完全に一つのManagerへ集約されているわけではなく、現在は首・腕・会話・記憶など、部位や責任ごとの既存経路が連携して動いています。
 
 ---
 
-## 3. Perception - 世界を見る
+## 3. L1 Perception - 世界から情報を受け取る
 
 現実世界から情報を受け取る入口です。
 
-現在の主な要素には、次のものがあります。
+現在の主な要素は、Camera Input、Face Detection、Object Detection、Object Tracking、Speech / Text Inputです。
 
-- Camera Input
-- Face Detection
-- Object Detection
-- Object Tracking
-- Speech / Text Input
-
-顔はOpenCV系の検出結果を安定化し、ObjectはYOLOXによるDetectionからByteTrackによるTrackingへ接続します。
-
-Objectについては、安定したTrackの中からObservation Targetを選びます。
-
-概略は次のようになります。
+顔はOpenCV系の検出結果を安定化し、ObjectはYOLOXによるDetectionからByteTrackによるTrackingへ接続します。Objectについては、安定したTrackの中からObservation Targetを選びます。
 
 ```text
 CameraInput
@@ -99,21 +105,17 @@ CameraInput
    → Object Attention Candidate
 ```
 
-ここで得られた候補は、次のAttentionレイヤーへ渡されます。
+ここで得られた候補はL2のAttentionへ渡されます。
 
 ---
 
-## 4. Attention - 何を見るかを決める
+## 4. L2 Attention / Conversation / Intent - 何を見るか、何を話すか、何をするか
 
-Face、Object、LOOK要求など複数の候補から、現在どこへ注意を向けるかを解決するレイヤーです。
+L2では、知覚した情報をもとに「何へ注意を向けるか」「何を話すか」「どの身体表現を選ぶか」といった意味側の判断を扱います。
 
-現在の中心は次のSourceです。
+### Attention
 
-- `OrientationPriorityRequestService`
-- `OrientationTargetResolver`
-- `OrientationResolutionTargetDriver`
-
-概略は次の通りです。
+Face、Object、LOOK要求など複数の候補から、現在どこへ注意を向けるかを解決します。
 
 ```text
 Face Candidate
@@ -125,15 +127,13 @@ OrientationTargetResolver
 Attention Target
 ```
 
-このAttention Targetは首のLOOKだけでなく、`current_attention_target`を使ったPOINTなど、身体表現側からも利用されます。
+現在の中心Sourceは、`OrientationPriorityRequestService`、`OrientationTargetResolver`、`OrientationResolutionTargetDriver`です。
 
----
+Attention Targetは首のLOOKだけでなく、`current_attention_target`を使ったPOINTなど、身体表現側からも利用されます。
 
-## 5. Conversation - 聞いて、考えて、返す
+### Conversation
 
 音声またはText Inputは、Runtimeの入力Queueを経由して会話処理へ送られます。
-
-現在の主要フローは次の通りです。
 
 ```text
 STT Final / Text Input
@@ -157,30 +157,19 @@ Speech + Body Intent
 
 Public v0.1時点のMainSceneではCloud Conversationが主な実運用経路で、Local Providerは代替経路としてSourceと参照を持っています。
 
-会話結果は発話だけでなく、Body IntentやHand Targetなどの身体表現へも接続されます。
-
-短期会話Contextは、完了したConversation Turnを限定数保持して次の会話生成へ渡します。
+会話結果は発話だけでなく、Body IntentやHand TargetなどのL3 Character Motionへも接続されます。
 
 ---
 
-## 6. Character Motion - キャラクターとして身体を動かす
+## 5. L3 Character Motion - キャラクターとして身体を動かす
 
-このレイヤーでは、AIやRuntimeが選んだ意図を、キャラクターの身体動作へ変換します。
+L3では、AIやRuntimeが選んだ意図を、キャラクターとしての身体動作へ変換します。
 
-現在は主に、
+現在は主に、VRM、Animator IK、LOOK、POINT、Free Pose、Semantic Body Targetなどを使用しています。
 
-- VRM
-- Animator IK
-- LOOK
-- POINT
-- Free Pose
-- Semantic Body Target
+### 現在のFree Pose例
 
-などを使っています。
-
-### 現在のFree Poseの考え方
-
-Project Salieri AIの現在のFree Poseでは、Unity空間にあらかじめ配置されたTargetを選択し、そのTargetをもとに腕のIKへ接続します。
+現在のFree Poseでは、Unity空間に用意されたSemantic Targetを選択し、そのTargetをもとに腕のIKへ接続します。
 
 ```text
 Conversation / Body Intent
@@ -194,17 +183,11 @@ Hand Target
 VRM Animator IK
 ```
 
-固定Targetは左右別に管理され、`current_attention_target`のように現在のAttentionから動的に生成されるTargetもあります。
+固定Targetは左右別に管理され、`current_attention_target`のように現在のAttentionから動的に利用されるTargetもあります。
 
-これは現在の主要方式であり、Project Salieri AI全体を将来にわたってIKだけへ限定するものではありません。用途に応じてAnimation、FK、別の制御方式を組み合わせられる構造を目指しています。
+これは**現在の主要方式の一つ**であり、Project Salieri AI全体を将来にわたってIKだけへ限定するものではありません。用途に応じてAnimation、FK、別の制御方式を組み合わせることを想定しています。
 
----
-
-## 7. VRM / IK - キャラクターの姿勢を解く
-
-腕では、World上のHand TargetをVRM Humanoid Animator IKへ渡し、解決されたVRMの手位置をVirtualBody側のArm Solverが追跡します。
-
-現在の腕経路は概ね次の通りです。
+### 腕の現在経路
 
 ```text
 HandTargetAuthority
@@ -226,7 +209,7 @@ VirtualBody Arm
 
 ---
 
-## 8. VirtualBody - キャラクターと実機の間にある身体
+## 6. L4 VirtualBody - キャラクターと実機の間にある身体
 
 VirtualBodyは、キャラクター側の身体表現と実際のロボットの身体の間に置く中間表現です。
 
@@ -238,7 +221,7 @@ Character / VRM
 Physical Body
 ```
 
-キャラクターの骨格構造と実機のサーボ構造を一対一で直接結びつけるのではなく、VirtualBodyを介することで、実機ごとの構造差や制約を分離しやすくします。
+キャラクターの骨格構造と実機のServo構造を一対一で直接結びつけるのではなく、VirtualBodyを介することで、実機ごとの構造差や制約を分離しやすくします。
 
 現在のProductionでは、全身を一つのCanonical Body Stateが所有しているわけではありません。
 
@@ -249,35 +232,37 @@ Physical Body
 
 ---
 
-## 9. Neck / LOOK - 視線から物理首まで
+## 7. LOOK / Neck - L2からL5をまたぐ実装例
 
-首は、Attention TargetをVRM Animatorで解き、その解決後の姿勢をPhysical NeckへRetargetする経路を持っています。
+首のLOOKは、複数レイヤーをまたぐ分かりやすい例です。
 
 ```text
-Attention Target
-  ↓
-VRM Animator LookAt
-  ↓
-VRM solved Neck / Head
-  ↓
-VirtualNeckRetarget
-  ↓
-PhysicalNeckOutputOwner
-  ↓
-NeckController
-  ├─ VirtualBody Neck
-  └─ Physical Neck Servo
+L2  Attention Target
+      ↓
+L3  VRM Animator LookAt
+      ↓
+    VRM solved Neck / Head
+      ↓
+L5  VirtualNeckRetarget
+      ↓
+    PhysicalNeckOutputOwner
+      ↓
+    NeckController
+      ├─ L4 VirtualBody Neck
+      └─ Physical Neck Servo
 ```
 
 `NeckController`はCommanded Poseを保持し、rate limitやHOLDを適用します。
 
 現在の首制御では、Targetを見失った場合も即座に別姿勢へ切り替えるのではなく、Commanded stateを基準にVirtualBodyとPhysical側を扱います。
 
+このように、レイヤーは「必ず一方向に一度だけ通る箱」ではなく、責任を区別するための設計上の地図です。
+
 ---
 
-## 10. Physical Retarget - VirtualBodyを実機へ合わせる
+## 8. L5 Physical Retarget / Safety - VirtualBodyを実機へ合わせる
 
-VirtualBodyのJoint角度を、そのまま機体へ送るのではなく、実際のServo構成に合わせて変換します。
+VirtualBodyのJoint角度やCommanded Stateを、実際の機体で使用できる形へ変換します。
 
 腕では主に次の経路です。
 
@@ -291,24 +276,25 @@ ServoControlUnit
 BodyCommandCoordinator
 ```
 
-この層では、機体ごとの
+この層では、機体ごとのServo使用可否、回転方向、Offset、Min / Max、補間、Output Enableなどを扱います。
 
-- Servo使用可否
-- 回転方向
-- Offset
-- Min / Max
-- 補間
-- Output Enable
+また、Project Salieri AIでは「誰が最後に書けるか」を明確にするため、AuthorityやOwnerを各所に置いています。
 
-などを扱います。
+代表例：
 
-これにより、VirtualBody側の表現と実機固有のServo設定を分離します。
+- Attention resolution：`OrientationTargetResolver`
+- Hand Target：`HandTargetAuthority`
+- Physical Neck：`PhysicalNeckOutputOwner`
+- Physical Arm Enable：`ArmServoOutputController`
+- Transport dispatch：`BodyCommandCoordinator`
+
+Interaction StateやPermissionによって、Orientation、Servo、Voice、Thinking、Searchなどの実行可否も切り替えます。Emergency / Stop系の入力は通常Conversationより先に扱われます。
 
 Public v0.1時点では、腕のPhysical Outputは起動時に自動でArmされない構成です。Safety条件とStartup synchronizationを通過してから出力します。
 
 ---
 
-## 11. Communication - 実機へCommandを送る
+## 9. L6 Communication - 実機へCommandを送る
 
 最終的なServo Commandは`BodyCommandCoordinator`に集約され、Platformや設定に応じてTransportを選びます。
 
@@ -316,7 +302,6 @@ Public v0.1時点では、腕のPhysical Outputは起動時に自動でArmされ
 BodyCommandCoordinator
 ├─ Windows
 │  → PC Serial
-│  → Arduino
 │
 └─ Android
    ├─ USB Serial / USB-OTG
@@ -325,13 +310,33 @@ BodyCommandCoordinator
 
 Public v0.1時点のMainSceneでは、WindowsはSerial、AndroidはUSB Serialが主設定です。Bluetooth経路も保持されています。
 
-Arduino側ではPCA9685を使用したServo制御Firmwareを公開しています。
+---
+
+## 10. L7 Hardware - Arduino / Servo / Physical Body
+
+L7は、Runtimeから届いたCommandを実際の身体へ反映するHardware側です。
+
+```text
+Communication
+  ↓
+Arduino
+  ↓
+PCA9685
+  ↓
+Servo
+  ↓
+Physical Body
+```
+
+Public v0.1では、Arduino + PCA9685を使ったServo制御FirmwareをRepositoryに収録しています。
+
+このレイヤーは、今後別のマイコン、Servo Driver、Motor Driver、Body構成へ置き換える余地を持つPhysical側の終端です。
 
 ---
 
-## 12. Memory / Recall - 経験を残す
+## 11. Memory / Recall - レイヤーを横断する経験基盤
 
-Project Salieri AIには、会話とは別にExperience / Recallの実験基盤があります。
+Memory / Recallは身体レイヤーとは別に、Perception、Attention、Conversation、Behaviorを横断するRuntime基盤です。
 
 現在のObject Experience系は概ね次の流れです。
 
@@ -361,33 +366,13 @@ JSON Store
 
 SQLiteによるWorld Memory subsystemもSourceとして存在しますが、Public v0.1時点では通常Production経路へ完全接続された状態ではありません。
 
-また、Visual Recallは現在exact matchingを中心とした実験段階です。
+Visual Recallは現在exact matchingを中心とした実験段階です。
 
 ---
 
-## 13. Safety / Authority - 誰が最後に書くか
-
-Project Salieri AIでは、複数の機能が同じ身体部位を同時に操作しないよう、各所にAuthorityやOwnerを置いています。
-
-代表例：
-
-- Attention resolution：`OrientationTargetResolver`
-- Hand Target：`HandTargetAuthority`
-- Physical Neck：`PhysicalNeckOutputOwner`
-- Physical Arm Enable：`ArmServoOutputController`
-- Transport dispatch：`BodyCommandCoordinator`
-
-また、Interaction StateやPermissionによって、Orientation、Servo、Voice、Thinking、Searchなどの実行可否を切り替えます。
-
-Emergency / Stop系の入力は通常Conversationより先に扱われます。
-
----
-
-## 14. MotionとFunctional Motion
+## 12. MotionとFunctional Motion
 
 Project Salieri AIでは、見た目として身体を動かすことと、現実世界で目的を達成するための身体動作を分けて考えています。
-
-例えば、
 
 ```text
 Animationで手を振る
@@ -403,49 +388,48 @@ Functional Motionでは、対象位置、現在姿勢、身体制約、安全性
 
 ---
 
-## 15. 何を改造したい？
+## 13. 何を改造したい？
 
-最初に見る場所の目安です。
+最初に見るレイヤーの目安です。
 
-| やりたいこと | 主に見る領域 |
+| やりたいこと | 最初に見るレイヤー / 領域 |
 |---|---|
-| 会話やAIの反応を変えたい | Conversation / LLM / Reaction |
-| 顔や物体認識を変えたい | Perception |
-| 何を見るかを変えたい | Attention / Orientation |
-| ポーズやジェスチャーを増やしたい | Body Intent / Free Pose / Spatial Target |
-| VRMの腕や首の動きを変えたい | Animator IK / IK Solver |
-| ロボットの腕・首構造を変えたい | VirtualBody / BodyJointConstraint |
-| Servoの方向や可動域を変えたい | Physical Retarget / Servo Bridge |
-| Arduinoや通信方式を変えたい | Communication / Firmware |
-| 記憶を実験したい | Experience / Recall / World Memory |
-| Safetyや動作許可を追いたい | Permission / Authority / Output Controller |
+| 顔や物体認識を変えたい | L1 Perception |
+| 何を見るかを変えたい | L2 Attention / Orientation |
+| 会話やAIの反応を変えたい | L2 Conversation / LLM / Reaction |
+| ポーズやジェスチャーを増やしたい | L2 Body Intent → L3 Free Pose / Spatial Target |
+| VRMの腕や首の動きを変えたい | L3 Character Motion / Animator IK / IK Solver |
+| ロボットの腕・首構造を変えたい | L4 VirtualBody / BodyJointConstraint |
+| Servoの方向や可動域を変えたい | L5 Physical Retarget / Servo Bridge |
+| Safetyや動作許可を追いたい | L5 Permission / Authority / Output Controller |
+| PC / Android通信を変えたい | L6 Communication |
+| ArduinoやServo Driverを変えたい | L7 Hardware / Firmware |
+| 記憶を実験したい | Memory / Recall / World Memory |
+
+具体的な変更箇所は [MODIFICATION_GUIDE.md](MODIFICATION_GUIDE.md) を参照してください。
 
 ---
 
-## 16. 現在どこまでつながっているか
+## 14. 現在どこまでつながっているか
 
 Public v0.1では、少なくとも次の経路がProduction Sourceとして存在し、MainScene上で接続されています。
 
 ```text
 Camera / Speech / Text
         ↓
-Perception / Runtime
+L1 Perception
         ↓
-Attention / Conversation
+L2 Attention / Conversation / Intent
         ↓
-Body Intent
+L3 Character Motion
         ↓
-VRM / Animator IK
+L4 VirtualBody
         ↓
-VirtualBody
+L5 Physical Retarget / Safety
         ↓
-Physical Retarget / Safety
+L6 Communication
         ↓
-BodyCommandCoordinator
-        ↓
-PC Serial / Android USB Serial / Bluetooth
-        ↓
-Arduino / Servo
+L7 Hardware
 ```
 
 一方で、すべての機能が完成しているわけではありません。
@@ -464,12 +448,14 @@ Project Salieri AIは完成品の内部を隠すのではなく、こうした�
 
 ---
 
-## 17. 次に読むもの
+## 15. 次に読むもの
 
-- [README](README.md) - Public v0.1の概要
-- [DEPENDENCIES](DEPENDENCIES.md) - 外部依存関係
-- [SOURCE_VERSIONING](SOURCE_VERSIONING.md) - Source Versionの扱い
-- [THIRD_PARTY_NOTICES](THIRD_PARTY_NOTICES.md) - 第三者Componentの権利情報
-- [Firmware README](Firmware/Arduino/BODYLOBO/Salieri_BODYLOBO_Unified_PCA9685_10Servo_115200/README.md) - Arduino / Servo側
+Project Salieri AIを理解してから実際にSourceへ入る場合は、次の順番を推奨します。
 
-今後、より詳細なSource単位の責任と呼び出し関係は`SOURCE_GUIDE.md`として整理していく予定です。
+1. **この `START_HERE.md`** - レイヤーと全体像
+2. [SOURCE_GUIDE.md](SOURCE_GUIDE.md) - 主要Source、Input / Output、Authority、実行Flow
+3. [MODIFICATION_GUIDE.md](MODIFICATION_GUIDE.md) - 目的別に最初に変更する場所
+4. [DEPENDENCIES.md](DEPENDENCIES.md) - 外部依存関係
+5. [Firmware README](Firmware/Arduino/BODYLOBO/Salieri_BODYLOBO_Unified_PCA9685_10Servo_115200/README.md) - Arduino / Servo側
+
+Source Versionの扱いは [SOURCE_VERSIONING.md](SOURCE_VERSIONING.md)、第三者Componentの権利情報は [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) を参照してください。
