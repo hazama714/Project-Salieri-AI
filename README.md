@@ -15,6 +15,12 @@ Seeing
   → Arduino / Servo
 ```
 
+## はじめに読む資料
+
+Project Salieri AIを改造・検証してみたい場合は、まず[START_HERE.md](START_HERE.md)を参照してください。
+
+レイヤー構成、現在のRuntime Flow、VirtualBody、Free Pose、Physical Retarget、Communication、Memory / Recallなどを、Source Codeを細部まで読む前に全体像としてつかめるようにまとめています。
+
 ## Public v0.1の範囲
 
 - Unity Runtimeの公開対象Source 502件
@@ -68,9 +74,9 @@ Project Salieri独自Sourceは[Project Salieri License v1.0](LICENSE)の対象�
 
 第三者Dependency、利用者が追加するAsset、Avatar、Modelにはそれぞれ固有のLicenseが適用されます。Project Salieri Licenseがそれらを上書きすることはありません。
 
-## 旧Apache Repositoryとの関係
+## Apache 2.0 Repositoryとの関係
 
-旧公開Repository `Project-Salieri-AI-Android-Runtime` はApache License 2.0のLegacy / Architecture Referenceとして維持されます。本RepositoryのPublic v0.1は現行Project Salieri AI用の独立した公開母体であり、旧RepositoryのLicenseや履歴を変更しません。
+別公開Repository `Project-Salieri-AI-Android-Runtime` は、`Android Edge AI Runtime for Unity` に関連する公開RepositoryとしてApache License 2.0のまま維持されます。本RepositoryのPublic v0.1はProject Salieri AI用の独立した公開母体であり、同RepositoryのLicenseや既に公開されたVersionの権利を変更しません。
 
 ## Firmware
 
