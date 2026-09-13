@@ -141,6 +141,117 @@
       </div>
     </section>
 
+    <section id="why-stack" class="section why-stack-section">
+      <div class="container">
+        <p class="eyebrow">なぜこの構成なのか / Why This Stack</p>
+        <h2>身近な技術をつないで、AIキャラクターに身体を与える。</h2>
+        <p class="heading-en" lang="en">Connecting accessible technologies to give an AI character a body.</p>
+        <p class="section-intro">
+          Project Salieri AIでは、Android、Unity、Arduinoという、個人でも扱いやすい技術を組み合わせています。
+          Androidは感覚と頭部、UnityはキャラクターとRuntime、Arduinoは実身体への出口を担います。
+        </p>
+        <p class="section-intro lang-en" lang="en">
+          Project Salieri AI combines Android, Unity, and Arduino—technologies that are accessible to individual creators.
+          Android provides an entry point for sensing and the head, Unity forms the character and runtime core, and Arduino connects the runtime to the physical body.
+        </p>
+
+        <div class="stack-overview">
+          <figure class="stack-figure stack-figure-wide" data-image-path="assets/why-stack.webp">
+            <div class="stack-image-placeholder" aria-hidden="true">
+              <span>Why This Stack</span>
+              <small>Android × Unity × Arduino</small>
+            </div>
+            <figcaption>
+              主要技術の役割を示すConcept図。L1〜L7のRuntime Architecture全体を置き換える図ではありません。
+              <span lang="en">A concept view of the selected technologies, not a replacement for the complete L1–L7 runtime architecture.</span>
+            </figcaption>
+          </figure>
+
+          <div class="stack-concept-flow" aria-label="Android, Unity, and Arduino concept flow">
+            <div class="stack-node"><strong>Android</strong><span>Sense / Voice / Display</span></div>
+            <div class="stack-arrow" aria-hidden="true">↓</div>
+            <div class="stack-node"><strong>Unity</strong><span>AI Character / Runtime / Motion / VirtualBody</span></div>
+            <div class="stack-arrow" aria-hidden="true">↓</div>
+            <div class="stack-node"><strong>Arduino</strong><span>Physical Output / Servo Control</span></div>
+            <div class="stack-arrow" aria-hidden="true">↓</div>
+            <div class="stack-node stack-node-output"><strong>Physical Body</strong><span>DIY Body / General Servos</span></div>
+          </div>
+        </div>
+
+        <div class="why-stack-grid">
+          <article class="card why-stack-card">
+            <figure class="stack-figure stack-card-figure" data-image-path="assets/why-android.webp">
+              <div class="stack-image-placeholder" aria-hidden="true"><span>Android</span><small>Sense / Voice / Display</small></div>
+              <figcaption>Android = 感覚と頭部の入口</figcaption>
+            </figure>
+            <p class="card-kicker">01 / Why Android?</p>
+            <h3>Android = 感覚と頭部の入口</h3>
+            <p>
+              Camera、Microphone、Speaker、Display、Network、Battery、Sensors、CPU / GPUが一台にまとまったスマートフォンを、
+              単なる操作端末ではなく、AIキャラクターの頭部として利用可能なコンピューターと捉えています。
+            </p>
+            <p>
+              Androidは必須条件ではありません。Public版はPC / Unityでも動作し、Androidは持ち運べるAIキャラクターの頭脳として重要な研究・実行環境です。
+            </p>
+            <p class="lang-en" lang="en">
+              A smartphone combines cameras, microphones, speakers, a display, networking, battery power, sensors, and CPU/GPU resources.
+              Android is not mandatory; the public runtime also operates on PC with Unity. It is an important portable research and execution environment for an embodied AI character.
+            </p>
+          </article>
+
+          <article class="card why-stack-card">
+            <figure class="stack-figure stack-card-figure" data-image-path="assets/why-unity.webp">
+              <div class="stack-image-placeholder" aria-hidden="true"><span>Unity</span><small>Character / Runtime / VirtualBody</small></div>
+              <figcaption>Unity = キャラクターとRuntimeの中核</figcaption>
+            </figure>
+            <p class="card-kicker">02 / Why Unity?</p>
+            <h3>Unity = キャラクターとRuntimeの中核</h3>
+            <p>
+              VRM、Animation、IK、Expression、Voice、Attention、State、External Communication、VirtualBodyを統合して扱います。
+              単なる表示環境ではなく、AIキャラクターからCharacter Motion、VirtualBody、Physical BodyまでをつなぐRuntimeの中核です。
+            </p>
+            <p>ゲーム、VRChat、3D Avatar開発で培われたキャラクター制御の経験を、Physical AIへ持ち込むことができます。</p>
+            <p class="lang-en" lang="en">
+              Unity brings VRM, animation, IK, expression, voice, attention, state, external communication, and the VirtualBody into one runtime.
+              It lets experience from games, VRChat, and 3D-avatar development carry over into Physical AI.
+            </p>
+          </article>
+
+          <article class="card why-stack-card">
+            <figure class="stack-figure stack-card-figure" data-image-path="assets/why-arduino.webp">
+              <div class="stack-image-placeholder" aria-hidden="true"><span>Arduino</span><small>Physical Output / Servo Control</small></div>
+              <figcaption>Arduino = 実身体への出口</figcaption>
+            </figure>
+            <p class="card-kicker">03 / Why Arduino?</p>
+            <h3>Arduino = 実身体への出口</h3>
+            <p>
+              Physical Retargetから生成されたBody CommandをArduinoへ渡し、PCA9685を介してServoへ出力します。
+              安価で入手しやすく、一般的なServoやDIY Bodyと組み合わせやすい、実身体側の出口です。
+            </p>
+            <div class="physical-path" aria-label="Arduino physical output path">
+              <span>Physical Retarget</span><b>→</b><span>Body Command</span><b>→</b><span>Arduino</span><b>→</b><span>PCA9685</span><b>→</b><span>Servo</span>
+            </div>
+            <p class="lang-en" lang="en">
+              Arduino receives retargeted body commands and drives servos through a PCA9685.
+              Its accessibility and compatibility with general-purpose servos make it a practical output layer for DIY physical bodies.
+            </p>
+          </article>
+        </div>
+
+        <div class="stack-closing">
+          <p>
+            Project Salieri AIは、全員が同じ完成ロボットを作ることを目的としていません。
+            Smartphone、Unity、Arduino、General Servos、3D Printerなど、個人でも利用しやすい技術を使い、
+            <strong>「自分のAIキャラクターに、自分で身体を与える」</strong>ためのDIY Physical AIの土台を共有します。
+          </p>
+          <p class="lang-en" lang="en">
+            Project Salieri AI is not intended to make everyone build the same finished robot.
+            It shares a DIY Physical AI foundation for giving your own AI character a body of your own design, using technologies accessible to individual creators.
+          </p>
+        </div>
+      </div>
+    </section>
+
     <section id="features" class="section alt">
       <div class="container">
         <p class="eyebrow">現在の機能 / Current Features</p>
