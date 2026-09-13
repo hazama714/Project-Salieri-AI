@@ -21,8 +21,9 @@ Project Salieri AIを改造・検証してみたい場合は、次の順で参�
 
 1. [START_HERE.md](START_HERE.md) — レイヤー構成、Runtime Flow、VirtualBody、Free Pose、Physical Retarget、Communication、Memory / Recallなど、まず全体像をつかむための「地図」
 2. [SOURCE_GUIDE.md](SOURCE_GUIDE.md) — 主要Sourceの役割、Input / Output、次に渡すSource、Authorityを機能単位で追うためのガイド
+3. [MODIFICATION_GUIDE.md](MODIFICATION_GUIDE.md) — ポーズ、IK、首、Servo、通信、会話、認識、Memoryなど、目的別に「最初にどこを触るか」を確認する実践ガイド
 
-Source Codeを細部まで読む前に、この2つを見ることで「何がどこにあり、どこを変更すると何が変わるか」を把握しやすくしています。
+Source Codeを細部まで読む前に、この3つを見ることで「何がどこにあり、どの責任を変更すると何が変わるか」を把握しやすくしています。
 
 ## Public v0.1の範囲
 
