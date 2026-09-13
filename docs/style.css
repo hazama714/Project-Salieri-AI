@@ -190,10 +190,14 @@ h3 { font-size: 1.18rem; }
 .why-stack-section { border-top: 1px solid var(--line); }
 .stack-overview {
   display: grid;
-  grid-template-columns: minmax(0, .85fr) minmax(320px, 1.15fr);
+  grid-template-columns: minmax(0, 1fr);
   gap: 24px;
   margin-top: 38px;
   align-items: stretch;
+}
+.stack-figure-wide {
+  width: min(100%, 960px);
+  margin-inline: auto;
 }
 .stack-figure {
   margin: 0;
@@ -202,25 +206,12 @@ h3 { font-size: 1.18rem; }
   border: 1px solid var(--line);
   border-radius: 18px;
 }
-.stack-image-placeholder {
-  min-height: 210px;
-  display: grid;
-  place-content: center;
-  gap: 6px;
-  padding: 24px;
-  text-align: center;
-  background:
-    radial-gradient(circle at 25% 20%, rgba(103,211,255,.20), transparent 42%),
-    radial-gradient(circle at 78% 80%, rgba(140,240,199,.14), transparent 38%),
-    rgba(255,255,255,.025);
-}
-.stack-image-placeholder span { font-size: 1.12rem; font-weight: 800; letter-spacing: .02em; }
-.stack-image-placeholder small { color: var(--muted); }
 .stack-figure img {
   display: block;
   width: 100%;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
 }
 .stack-figure figcaption {
   padding: 13px 16px 15px;
@@ -234,6 +225,8 @@ h3 { font-size: 1.18rem; }
   display: grid;
   align-content: center;
   gap: 7px;
+  width: min(100%, 960px);
+  margin-inline: auto;
   padding: 24px;
   background: linear-gradient(180deg, rgba(18,34,57,.96), rgba(12,23,40,.95));
   border: 1px solid var(--line);
@@ -262,7 +255,10 @@ h3 { font-size: 1.18rem; }
 }
 .why-stack-card { min-height: 0; }
 .why-stack-card .card-kicker { margin-top: 24px; margin-bottom: 12px; }
-.stack-card-figure .stack-image-placeholder { min-height: 145px; }
+.stack-card-figure img {
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+}
 .stack-card-figure figcaption { text-align: center; }
 .physical-path {
   display: flex;
@@ -453,7 +449,6 @@ h3 { font-size: 1.18rem; }
   .flow-card { padding: 18px; }
   .stack-concept-flow { padding: 16px; }
   .stack-node { grid-template-columns: 1fr; gap: 2px; }
-  .stack-image-placeholder { min-height: 170px; }
   .layer-stack { padding: 14px; }
   .layer-row { grid-template-columns: 34px 1fr; }
   .layer-row small { grid-column: 2; }
