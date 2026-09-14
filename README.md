@@ -90,6 +90,16 @@ Project Salieri License v1.1では、個人・独立した個人事業主によ�
 - Independent Creatorの収入基準は、原則として終了した年間Accounting / Tax Periodごとに判定し、JPY 10,000,000以下を基準とします。年度途中の累計が1,000万円を超えたことだけで直ちに資格を失うものではありません
 - 個人から別の個人への、対価を伴わない非商用の直接譲渡は、公開配布・企業利用・再販売等を伴わない一定条件のもとでPermitted Private Transferとして認めます
 
+### Creator License Fee Policy
+
+Independent Creatorとして活動し、終了した年間Accounting / Tax Periodの事業収入がJPY 10,000,000を超えた場合でも、Creator本人が引き続き自己主導で活動し、企業・組織の代理や実質的なEntity利用ではない限り、**年額JPY 1,000を基本とするCreator License**を個別の書面許諾として用意する方針です。
+
+このFeeは売上に対するPercentage Royaltyではなく、個人Creatorの成功を負担に変えず、Creatorとしての活動を正式なLicense関係の中で継続しやすくするための象徴的な固定額です。Company、Organization、Research Institution等のEntity利用はCreator Licenseの対象ではなく、Commercial / Enterprise条件を個別に協議します。
+
+Creator License Feeの支払いだけで、企業利用、OEM、Sublicense、Public Redistribution、Entityへの譲渡その他の権利が自動的に付与されるものではありません。JPY 10,000,000基準を超えた場合は、Project Salieri License v1.1 Section 6のGrowth Transition期間中にStudio Hazama 714へ連絡し、別途の書面許諾を受ける必要があります。
+
+詳細は[Charter & License Q&A / Creator License Fee Policy](https://hazama714.github.io/Project-Salieri-AI/license.html#fee-policy)を参照してください。
+
 一方、次のような利用は事前許諾が必要です。
 
 - Company、Organization、Educational / Research Institutionなどによる利用
