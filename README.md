@@ -96,6 +96,8 @@ Independent Creatorとして活動し、終了した年間Accounting / Tax Perio
 
 このFeeは売上に対するPercentage Royaltyではなく、個人Creatorの成功を負担に変えず、Creatorとしての活動を正式なLicense関係の中で継続しやすくするための象徴的な固定額です。Company、Organization、Research Institution等のEntity利用はCreator Licenseの対象ではなく、Commercial / Enterprise条件を個別に協議します。
 
+Creator Licenseの適用可否は、法人格の有無や売上額だけでは判断しません。Creator本人が創作・研究・技術判断の主体であるか、従業員やContractorを含む組織的な運営、第三者やEntityのための業務、OEM・大量製品化などの実態を含めて個別に判断します。自然人または個人事業主であっても、実態が組織的・企業的な利用に相当する場合はCommercial / Enterprise条件の対象となる場合があります。一方、売上が大きいことだけを理由にCreator Licenseから外すものではありません。
+
 Creator License Feeの支払いだけで、企業利用、OEM、Sublicense、Public Redistribution、Entityへの譲渡その他の権利が自動的に付与されるものではありません。JPY 10,000,000基準を超えた場合は、Project Salieri License v1.1 Section 6のGrowth Transition期間中にStudio Hazama 714へ連絡し、別途の書面許諾を受ける必要があります。
 
 詳細は[Charter & License Q&A / Creator License Fee Policy](https://hazama714.github.io/Project-Salieri-AI/license.html#fee-policy)を参照してください。
