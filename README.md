@@ -82,18 +82,22 @@ Project Salieri License v1.1では、個人・独立した個人事業主によ�
 - 動作デモ、展示、画像・動画・Livestream公開
 - 条件を満たすIndependent Creatorによる収益化された動画・配信・展示など
 - 独自に制作したSalieri Compatible Body、3D Model、Hardware、Accessory等の制作・販売・レンタル
-- Independent Creatorの年間事業収入基準はJPY 10,000,000以下。ただし、これはProject Salieri独自のLicense基準であり、税法上の区分を意味しません
+- Independent Creatorの収入基準は、原則として終了した年間Accounting / Tax Periodごとに判定し、JPY 10,000,000以下を基準とします。年度途中の累計が1,000万円を超えたことだけで直ちに資格を失うものではありません
+- 個人から別の個人への、対価を伴わない非商用の直接譲渡は、公開配布・企業利用・再販売等を伴わない一定条件のもとでPermitted Private Transferとして認めます
 
 一方、次のような利用は事前許諾が必要です。
 
 - Company、Organization、Educational / Research Institutionなどによる利用
 - 企業・Client等のために行う受託、委託、Consulting、Outsourcing
-- Source、改変Source、Binary、Project Salieri由来Assetの第三者への再配布
+- Source、改変Source、Binary、Project Salieri由来Assetの一般公開・Public Download・Marketplace・大量配布など
+- Source、改変Source、Binary、Project Salieri由来Assetを企業・組織へ譲渡する行為（無償を含む）
 - Project Salieri本体を含むProduct、Application、Service、SaaS、Commercial Robot等の第三者提供
 - Independent Creatorの範囲を超える大規模な事業利用
 - 個人名義、子会社、事業分割、Sponsor名目などを利用したLicense条件の迂回
 
-第三者が独自に制作したCompatible Body、3D Model、Hardware等は、それ自体がProject Salieri SourceやVirtualBody Assetを含まず、それらから派生していない限り、Project Salieri Licenseの対象にはなりません。作者自身がその作品のLicenseを決定できます。
+Permitted Private Transferは、個人研究・DIY活動のための直接的な個人間共有を想定しています。受領者にもProject Salieri License v1.1が適用され、License表示・Attributionを保持する必要があります。企業や組織への譲渡、販売・製品化・受託利用のための譲渡には使用できません。
+
+第三者が独自に制作したCompatible Body、3D Model、Hardware等は、それ自体がProject Salieri SourceやVirtualBody Assetを含まず、それらから派生していない限り、Project Salieri Licenseの対象にはなりません。作者自身がその作品のLicenseを決定でき、個人・企業を問わず販売・譲渡・レンタルできます。ただし、受領した企業がProject Salieri Software自体を利用する場合には、別途Project Salieri側の事前許諾が必要です。
 
 Project Salieri License v1.1は、外部技術やBodyを公式Referenceへ取り込む場合の権利関係についても明確化しています。第三者特許、著作権、Design Right等は自動的にProject Salieriへ移転・許諾されるものではなく、Communityの継続的な研究・DIY利用を妨げる可能性のある権利条件については、公式Referenceへの採用時に別途Rights Clearanceを求める方針です。
 
