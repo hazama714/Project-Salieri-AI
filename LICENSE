@@ -1,15 +1,15 @@
 Project Salieri License
-Version 1.0
-Effective Date: 2026-09-11
+Version 1.1
+Effective Date: 2026-09-15
 
 Copyright (c) 2026 Studio Hazama 714
 
-1. Scope
+1. Scope and Purpose
 
 This license applies to Project Salieri AI source files that expressly
 identify this license, including by the SPDX identifier
-LicenseRef-Project-Salieri-1.0, and to the following Studio Hazama 714
-original VirtualBody assets included in this repository (collectively, the
+LicenseRef-Project-Salieri-1.1, and to the following Studio Hazama 714
+original VirtualBody assets distributed with this license (collectively, the
 "Software"):
 
 - Assets/LobBodyModels/RobotBody/Asis3D_3_Vbody.fbx
@@ -19,12 +19,17 @@ The two VirtualBody assets listed above are original Studio Hazama 714 works,
 are not Avatar-derived assets, and are licensed under the same terms as the
 Software unless Studio Hazama 714 expressly states otherwise in writing.
 
-This license is a source-available license. It is not an OSI-approved open
-source license.
+This is a source-available license. It is not an OSI-approved open source
+license.
 
-Third-party software, libraries, models, data, and assets are not licensed
-under this license. Their respective licenses and terms continue to apply.
-In particular, avatar assets, VRM files, meshes, textures, materials,
+Project Salieri AI is intended to support individual research, independent
+creation, experimentation, and DIY AI-robot development while reserving
+separate terms for organizational and larger-scale commercial use. The
+specific legal permissions and restrictions are those stated in this license.
+
+Third-party software, libraries, models, data, patents, and assets are not
+licensed under this license. Their respective licenses and terms continue to
+apply. In particular, avatar assets, VRM files, meshes, textures, materials,
 BlendShape assets, Avatar assets, MetaObjects, and other avatar-derived
 assets—including the Asis3D avatar and its derived assets—are outside the
 scope of this license unless Studio Hazama 714 expressly states otherwise in
@@ -32,80 +37,248 @@ writing.
 
 2. Definitions
 
-"Individual" means a natural person acting solely on that person's own
-behalf, and not on behalf of a company, organization, institution, client,
-employer, or other legal entity.
+"Individual" means a natural person.
 
-"Non-Commercial Personal Use" means use by an Individual solely for that
-Individual's own non-commercial purposes, without compensation, revenue,
-commercial advantage, organizational purpose, or use in providing goods or
-services to another person or entity.
+"Entity" means a corporation, company, organization, association,
+partnership, educational institution, research institution, government body,
+client, employer, or other legal or organizational person other than an
+Individual acting solely on that Individual's own behalf.
+
+"Independent Creator" means an Individual, including an Individual operating
+as a sole proprietor, who:
+
+a. personally controls and directs the relevant research, creative, or DIY
+   activity;
+b. is not using the Software on behalf of, under the direction of, or for the
+   primary benefit of an Entity;
+c. is not subject to an arrangement under which an Entity controls the
+   relevant technical decisions, deliverables, intellectual property,
+   exclusivity, or commercial exploitation; and
+d. has Aggregate Independent Creator Revenue of not more than JPY 10,000,000
+   for the most recently completed twelve-month accounting or tax period, or,
+   if no such completed period exists, reasonably expects such revenue not to
+   exceed JPY 10,000,000 during the current twelve-month period.
+
+"Aggregate Independent Creator Revenue" means gross amounts received by the
+Independent Creator from self-employed, creator, business, professional,
+advertising, sponsorship, commission, product, service, rental, or similar
+activities under that person's control. Salary or wages from unrelated
+employment and passive investment income are excluded. Amounts received in a
+foreign currency shall be converted to Japanese yen using a reasonable
+prevailing exchange rate.
+
+The JPY 10,000,000 threshold in this license is a Project Salieri licensing
+criterion. It is not a statement of tax status or legal business
+classification under Japanese or other law.
+
+"Independent Creator Use" means use by an Independent Creator for that
+creator's own research, study, experimentation, creative work, DIY activity,
+demonstration, content creation, exhibition, or other self-directed activity,
+including revenue-generating activity permitted by Section 4.
+
+"Permitted Sponsorship" means financial, equipment, venue, publicity, or
+other support provided to an Independent Creator where the supporter does not
+control the creator's technical decisions, require delivery of the Software
+or a Software-derived product, obtain ownership of the creator's work or
+intellectual property, require exclusivity, or otherwise make the activity
+work performed on behalf of the supporter.
 
 "Redistribution" means making the Software, a modified version of the
 Software, a binary built from the Software, or source derived from the
 Software available to any third party, whether publicly or privately,
 whether for payment or free of charge.
 
-3. Limited Permission for Non-Commercial Personal Use
+"Independent Compatible Work" means a separately created body, mechanical
+part, 3D model, hardware device, accessory, adapter, interface, or other work
+that interoperates with the Software but does not contain, copy, modify, or
+derive from the Software or the Studio Hazama 714 VirtualBody assets listed
+in Section 1.
+
+3. Permission for Personal and Independent Creator Use
 
 Subject to all terms of this license, Studio Hazama 714 grants an Individual
-a limited, non-exclusive, non-transferable, non-sublicensable, royalty-free
-permission to:
+or Independent Creator a limited, non-exclusive, non-transferable,
+non-sublicensable, royalty-free permission to:
 
 a. obtain and make private copies of the Software;
 b. run, study, inspect, research, and technically evaluate the Software;
-c. modify the Software solely for the Individual's own use;
-d. incorporate the Software into the Individual's own non-commercial,
-   personally used AI, robot, or avatar project;
-e. demonstrate that personal project on a non-commercial basis; and
-f. publish non-commercial images or videos showing the Software or a personal
-   project in operation, provided that no Software, modified source, or binary
-   is redistributed through that publication.
+c. modify the Software for that person's own permitted use;
+d. incorporate the Software into that person's own AI, robot, avatar, or
+   physical-computing project for permitted use;
+e. demonstrate and exhibit that project;
+f. publish images, videos, livestreams, articles, and other media showing the
+   Software or that project in operation, including monetized media by an
+   Independent Creator, provided that no Software, modified source, or binary
+   is redistributed through that publication;
+g. receive Permitted Sponsorship; and
+h. conduct self-directed Independent Creator Use within the revenue threshold
+   in Section 2, provided that the activity does not involve a use that
+   Section 5 reserves for prior written permission.
 
-Private copies stored on the Individual's local computer, private storage, or
-non-public development environment for the permitted use above are not
+Private copies stored on the user's local computer, private storage, or
+non-public development environment for a permitted use are not
 Redistribution.
 
 All copyright, license, and attribution notices present in the Software must
 be preserved in permitted private copies and modifications.
 
-4. Uses Requiring Prior Written Permission
+4. Independent Creator Commercial Activity
 
-No rights are automatically granted for any use outside Non-Commercial
-Personal Use. Prior written permission from Studio Hazama 714 is required for
-all such use, including, without limitation:
+An Independent Creator may earn revenue from permitted Independent Creator
+Use without obtaining separate prior written permission solely because the
+activity generates revenue.
 
-a. use by or on behalf of a corporation, company, organization, group,
-   educational institution, research institution, or other entity;
-b. business, professional, commercial, revenue-generating, or for-profit use;
-c. incorporation into a product, service, SaaS, cloud service, paid
-   application, commercial AI, or commercial robot;
-d. contract development, commissioned work, consulting, outsourcing, or work
-   performed for another person or entity;
-e. advertising-supported or sponsorship-supported use;
-f. Redistribution of source code, modified source code, binaries, or source
+Examples of activity that may fall within Independent Creator Use, subject to
+all other terms of this license, include monetized videos or livestreams,
+paid personal demonstrations or exhibitions, small-scale self-directed
+creative activity, and the design, sale, or rental of the creator's own
+Independent Compatible Works.
+
+An Independent Compatible Work remains the property of its creator and may be
+licensed or distributed by that creator under terms of the creator's choice,
+subject to applicable law and third-party rights. Merely being compatible
+with Project Salieri AI does not place that work under this license.
+
+This Section does not authorize Redistribution of the Software or a modified
+version of the Software, nor does it authorize distribution of a product,
+asset, or binary that contains or is derived from the Software or the Studio
+Hazama 714 VirtualBody assets.
+
+5. Uses Requiring Prior Written Permission
+
+Prior written permission from Studio Hazama 714 is required for any of the
+following:
+
+a. use by or on behalf of an Entity, regardless of the Entity's revenue;
+b. use by an Individual acting as an employee, contractor, consultant,
+   commissioned developer, outsourced developer, or other person performing
+   work for another person or Entity;
+c. use by an Independent Creator whose Aggregate Independent Creator Revenue
+   exceeds the threshold in Section 2, subject to the transition period in
+   Section 6;
+d. incorporation of the Software, modified Software, or a Software-derived
+   binary or asset into a product, service, SaaS, cloud service, paid
+   application, commercial AI, commercial robot, or other offering made
+   available to third parties;
+e. Redistribution of the Software, modified source code, binaries, or source
    supplied as part of a derivative work;
-g. granting or sublicensing any right to a third party; and
-h. any other use exceeding Non-Commercial Personal Use.
+f. granting or sublicensing any right in the Software to a third party;
+g. sponsorship or funding arrangements that are not Permitted Sponsorship;
+h. use that gives an Entity ownership, exclusivity, delivery rights,
+   intellectual-property rights, or material control over work performed with
+   the Software; and
+i. any other use not expressly permitted by Sections 3 and 4.
 
-These restrictions apply whether or not the proposed use is offered for a
-fee. If the permitted status of a use is unclear, prior written permission is
-required before that use begins.
+These requirements apply whether or not the proposed use is offered for a
+fee. If the permitted status of a use is genuinely unclear, the user should
+request clarification before beginning that use.
 
-5. No Redistribution
+6. Growth Transition for Independent Creators
+
+Project Salieri AI does not intend the Independent Creator revenue threshold
+to operate as an immediate penalty for a creator's success.
+
+If an Independent Creator exceeds the JPY 10,000,000 threshold after validly
+using the Software under this Version 1.1, that creator may continue the
+previously permitted use for up to 90 days after the end of the accounting or
+tax period in which the threshold was exceeded while seeking separate written
+permission or another applicable Project Salieri license.
+
+This transition period does not authorize new Redistribution, Entity use,
+commissioned work, or any other activity that was already outside the scope of
+Independent Creator Use.
+
+7. No Redistribution
 
 Except where Studio Hazama 714 gives explicit prior written permission, the
 Software, modified versions of the Software, binaries built from the
 Software, and source derived from the Software may not be redistributed.
 
-6. Ownership and Reserved Rights
+For avoidance of doubt, distributing an Independent Compatible Work that does
+not contain or derive from the Software is not Redistribution of the Software
+for purposes of this license.
+
+8. Anti-Circumvention and Substance Over Form
+
+The permissions for Individuals and Independent Creators may not be obtained
+through an arrangement designed primarily to evade the Entity, revenue,
+Redistribution, or other restrictions of this license.
+
+The actual substance of an arrangement controls over its name or form.
+Without limitation, the following do not qualify for Independent Creator Use
+when they are used to obtain rights that an Entity or larger commercial
+operation would not otherwise have:
+
+a. placing an employee, contractor, sponsored person, nominee, or other
+   Individual in front of an Entity-controlled project;
+b. splitting one business or project among multiple persons, brands,
+   subsidiaries, affiliates, or newly created entities to remain below the
+   revenue threshold;
+c. characterizing commissioned or controlled work as sponsorship;
+d. transferring the resulting work, control, or exclusive benefit to an
+   Entity through a side agreement; or
+e. using an Independent Creator as a conduit for Entity use of the Software.
+
+Permitted Sponsorship that leaves creative and technical control with the
+Independent Creator is not prohibited by this Section.
+
+9. Independent Compatible Bodies, Hardware, and Community Works
+
+Project Salieri AI welcomes independently created compatible bodies,
+mechanisms, 3D models, hardware, adapters, and other community works.
+Compatibility alone does not transfer ownership to Studio Hazama 714 and does
+not place an Independent Compatible Work under this license.
+
+A third-party work does not become an official, certified, or reference body,
+hardware platform, or distribution merely because it is compatible with the
+Software or widely used by the community. Any official certification,
+reference designation, bundling, or inclusion in a Project Salieri
+distribution requires separate written approval from Studio Hazama 714 and,
+where applicable, the relevant rightsholder.
+
+Studio Hazama 714 may decline to incorporate or designate third-party
+technology as an official reference component where the rights necessary for
+continued community use, modification, distribution, or interoperability are
+unclear, revocable, undisclosed, or subject to restrictions that could
+materially prevent continued individual research or DIY use.
+
+Nothing in this Section grants rights under third-party patents, copyrights,
+trademarks, trade secrets, designs, or other intellectual-property rights.
+
+10. Contributions and Intellectual-Property Rights
+
+Nothing in this license requires a third party to contribute code, models,
+hardware designs, or other material to Project Salieri AI.
+
+Material submitted for possible inclusion in the Software is not accepted
+into the official Project Salieri distribution unless Studio Hazama 714 is
+satisfied that the contributor has authority to provide the material under
+terms compatible with the intended Project Salieri distribution.
+
+A contributor must disclose any known third-party license restriction,
+patent, design right, confidentiality obligation, ownership claim, or other
+encumbrance that the contributor knows is required to use the submitted
+material as proposed.
+
+No contribution, compatibility claim, sponsorship, or community participation
+by itself grants Project Salieri AI users a patent license or other right that
+the relevant rightsholder has not expressly granted. Where a contribution
+requires patent or other intellectual-property permission for ordinary use,
+Studio Hazama 714 may require a separate written grant, covenant, contributor
+agreement, or other rights clearance before accepting that contribution into
+an official distribution.
+
+11. Ownership and Reserved Rights
 
 The Software is licensed, not sold. Studio Hazama 714 retains all right,
 title, and interest in the Software. All rights not expressly granted by this
-license are reserved. No patent, trademark, trade name, logo, publicity, or
-other brand right is granted by this license.
+license are reserved.
 
-7. Names and Branding
+Except as expressly stated in a separate written agreement, this license does
+not grant any patent, trademark, trade name, logo, publicity, certification,
+or other brand right.
+
+12. Names and Branding
 
 This license does not grant permission to use the names "Project Salieri",
 "Project Salieri AI", or "Studio Hazama 714" as a product name, service name,
@@ -113,17 +286,27 @@ organization name, endorsement, certification, partnership, or affiliation.
 Use that is likely to cause others to believe that a product or project is
 official, certified, endorsed, or affiliated is prohibited.
 
-Truthful, nominative reference to identify the Software remains subject to
-applicable law and must not imply endorsement or affiliation.
+Truthful, nominative reference to identify compatibility with the Software
+remains subject to applicable law and must not imply endorsement,
+certification, or affiliation.
 
-8. Third-Party Materials
+13. Third-Party Materials
 
 Third-party dependencies and materials remain subject to their own licenses,
-copyright notices, usage terms, and redistribution restrictions. Nothing in
-this license overrides, replaces, or expands rights under any third-party
-license. Third-party compliance is the user's responsibility.
+copyright notices, patent rights, usage terms, and redistribution
+restrictions. Nothing in this license overrides, replaces, or expands rights
+under any third-party license or other third-party right. Third-party
+compliance is the user's responsibility.
 
-9. Previously Released Apache-2.0 Versions
+14. Previously Released Versions and Apache-2.0 Versions
+
+Project Salieri License Version 1.1 applies only to versions of the Software
+expressly distributed under Version 1.1.
+
+Versions of the Software previously distributed under Project Salieri License
+Version 1.0 remain under Version 1.0. Version 1.1 does not alter, withdraw,
+reduce, or expand the rights already granted for a copy distributed under
+Version 1.0.
 
 Some Project Salieri source versions were previously released in the
 Project-Salieri-AI-Android-Runtime repository under the Apache License 2.0.
@@ -131,10 +314,7 @@ Rights validly granted for those previously released versions are not
 withdrawn or reduced by this license. Those repository versions remain under
 the Apache License 2.0.
 
-This Project Salieri License Version 1.0 applies only to versions distributed
-with an express notice identifying this license.
-
-10. Physical Device and AI Safety
+15. Physical Device and AI Safety
 
 The Software may control or interact with AI systems, robots, servos, cameras,
 communication devices, and other physical devices. The user is solely
@@ -143,7 +323,7 @@ electrical and mechanical safeguards, operating limits, testing, and all
 other safety measures. The user assumes all risks arising from use of the
 Software or connected devices.
 
-11. Disclaimer of Warranty
+16. Disclaimer of Warranty
 
 THE SOFTWARE IS PROVIDED "AS IS" AND "AS AVAILABLE", WITHOUT WARRANTY OF ANY
 KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF
@@ -151,7 +331,7 @@ MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, NON-INFRINGEMENT,
 ACCURACY, RELIABILITY, SAFETY, OR UNINTERRUPTED OPERATION. TO THE MAXIMUM
 EXTENT PERMITTED BY LAW, ALL WARRANTIES ARE DISCLAIMED.
 
-12. Limitation of Liability
+17. Limitation of Liability
 
 TO THE MAXIMUM EXTENT PERMITTED BY LAW, STUDIO HAZAMA 714 AND ITS AUTHORS,
 OWNERS, CONTRIBUTORS, AND LICENSORS SHALL NOT BE LIABLE FOR ANY DIRECT,
@@ -163,7 +343,7 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 Nothing in this license excludes or limits liability to the extent that such
 exclusion or limitation is prohibited by applicable law.
 
-13. Termination
+18. Termination
 
 The permissions granted by this license terminate automatically upon breach
 of its terms. Upon termination, the user must stop using the Software and
@@ -171,21 +351,26 @@ delete all copies, except to the extent retention is required by applicable
 law. Termination does not limit any other remedy available to Studio Hazama
 714.
 
-14. Governing Law
+19. Governing Law
 
 This license is governed by the laws of Japan, without regard to conflict-of-
 law principles.
 
-15. License Versions
+20. License Versions
 
-This is Project Salieri License Version 1.0, effective 2026-09-11. Studio
-Hazama 714 may publish later license versions, such as Version 1.1 or Version
-2.0. A later license version does not automatically apply to a version of the
-Software already distributed under this Version 1.0 unless expressly stated.
+This is Project Salieri License Version 1.1, effective 2026-09-15. Studio
+Hazama 714 may publish later license versions or separate distributions for
+different purposes, including community, research, creator, commercial, or
+enterprise use.
 
-16. Separate Written Permission
+A later license version does not apply to any version of the Software already
+distributed under Version 1.1. A copy of the Software remains governed by the
+license version under which that copy was distributed unless the recipient
+separately chooses to obtain and use a later distribution under its stated
+license terms.
+
+21. Separate Written Permission
 
 Studio Hazama 714 may grant additional or different rights through a separate
 written agreement. Requests for uses not permitted by this license must be
 made through an official contact channel designated by Studio Hazama 714.
-
