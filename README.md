@@ -15,6 +15,11 @@ Seeing
   → Arduino / Servo
 ```
 
+## Web
+
+- [Project Salieri AI 公式ホームページ](https://hazama714.github.io/Project-Salieri-AI/)
+- [憲章・Project Salieri License v1.1・License Q&A](https://hazama714.github.io/Project-Salieri-AI/license.html)
+
 ## はじめに読む資料
 
 Project Salieri AIを改造・検証してみたい場合は、次の順で参照してください。
