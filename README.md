@@ -73,8 +73,23 @@ Source Versionはファイル単位で管理し、Public v0.1の初回公開対�
 
 Project Salieri独自Sourceは[Project Salieri License v1.0](LICENSE)の対象です。
 
-- 個人・非商用の自己利用：許可
-- その他の利用：事前許諾が必要
+個人による非商用の自己利用では、次の範囲を**都度の事前許諾なく**行えます。
+
+- Sourceの取得、実行、閲覧、研究、技術評価
+- 自分で使用するための改造
+- 自分の非商用AI・ロボット・Avatar Projectへの組み込み
+- 非商用での動作デモ
+- Source、改変Source、Binaryを再配布しない形での非商用な画像・動画の公開
+
+一方、次のような利用は事前許諾が必要です。
+
+- Source、改変Source、Binary、Source由来成果物の第三者への再配布
+- 製品、Application、Serviceなどへの組み込み配布
+- 商用利用、収益化を伴う利用
+- Company、Organization、Educational / Research Institutionなどによる利用
+- 受託、委託、Consultingなど第三者のために行う利用
+
+将来Project Salieri Licenseの新しいVersionが公開された場合でも、**Project Salieri License v1.0で既に配布されたVersionに、新しいLicenseが自動的に遡及適用されることはありません**。詳細は[LICENSE](LICENSE) Section 15を参照してください。
 
 第三者Dependency、利用者が追加するAsset、Avatar、Modelにはそれぞれ固有のLicenseが適用されます。Project Salieri Licenseがそれらを上書きすることはありません。
 
