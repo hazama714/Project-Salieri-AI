@@ -56,9 +56,14 @@ c. is not subject to an arrangement under which an Entity controls the
    relevant technical decisions, deliverables, intellectual property,
    exclusivity, or commercial exploitation; and
 d. has Aggregate Independent Creator Revenue of not more than JPY 10,000,000
-   for the most recently completed twelve-month accounting or tax period, or,
-   if no such completed period exists, reasonably expects such revenue not to
-   exceed JPY 10,000,000 during the current twelve-month period.
+   for the most recently completed annual accounting or tax period.
+
+If the Independent Creator has not yet completed an applicable annual
+accounting or tax period, the revenue threshold is first assessed at the end
+of that first completed period. Until then, the Individual may use the
+Independent Creator permissions if all other requirements of this license are
+satisfied and the arrangement is not designed to evade the Entity or larger-
+scale commercial-use restrictions of this license.
 
 "Aggregate Independent Creator Revenue" means gross amounts received by the
 Independent Creator from self-employed, creator, business, professional,
@@ -70,7 +75,11 @@ prevailing exchange rate.
 
 The JPY 10,000,000 threshold in this license is a Project Salieri licensing
 criterion. It is not a statement of tax status or legal business
-classification under Japanese or other law.
+classification under Japanese or other law. The threshold is assessed after
+the close of the applicable annual accounting or tax period. Exceeding JPY
+10,000,000 in cumulative receipts during an open period does not by itself
+terminate Independent Creator status before that period closes; Section 6
+applies if the completed period exceeds the threshold.
 
 "Independent Creator Use" means use by an Independent Creator for that
 creator's own research, study, experimentation, creative work, DIY activity,
@@ -87,7 +96,28 @@ work performed on behalf of the supporter.
 "Redistribution" means making the Software, a modified version of the
 Software, a binary built from the Software, or source derived from the
 Software available to any third party, whether publicly or privately,
-whether for payment or free of charge.
+whether for payment or free of charge. A Permitted Private Transfer under
+Section 7 is a limited exception to the general Redistribution restriction.
+
+"Permitted Private Transfer" means a direct, non-commercial transfer of a
+copy of the Software, a modified copy, or a binary built from the Software by
+an Individual or Independent Creator to another identified Individual, where:
+
+a. no fee, compensation, barter, sponsorship condition, or other economic
+   consideration is received in exchange for the transfer;
+b. the recipient is acting on that recipient's own behalf and not on behalf
+   of, under the direction of, or for the primary benefit of an Entity;
+c. the transfer is not offered to the public and is not made through a public
+   download, public repository, marketplace, mass distribution channel,
+   automated distribution service, or similar general-access mechanism;
+d. all copyright, license, and attribution notices are preserved, and a copy
+   of this license accompanies the transferred copy; and
+e. the transfer is not made for resale, productization, organizational use,
+   commissioned work, or other activity requiring prior written permission
+   under Section 5.
+
+The recipient receives no broader rights than those granted by this license
+and must independently comply with its terms.
 
 "Independent Compatible Work" means a separately created body, mechanical
 part, 3D model, hardware device, accessory, adapter, interface, or other work
@@ -111,10 +141,11 @@ f. publish images, videos, livestreams, articles, and other media showing the
    Software or that project in operation, including monetized media by an
    Independent Creator, provided that no Software, modified source, or binary
    is redistributed through that publication;
-g. receive Permitted Sponsorship; and
+g. receive Permitted Sponsorship;
 h. conduct self-directed Independent Creator Use within the revenue threshold
    in Section 2, provided that the activity does not involve a use that
-   Section 5 reserves for prior written permission.
+   Section 5 reserves for prior written permission; and
+i. make a Permitted Private Transfer in accordance with Section 7.
 
 Private copies stored on the user's local computer, private storage, or
 non-public development environment for a permitted use are not
@@ -136,14 +167,16 @@ creative activity, and the design, sale, or rental of the creator's own
 Independent Compatible Works.
 
 An Independent Compatible Work remains the property of its creator and may be
-licensed or distributed by that creator under terms of the creator's choice,
-subject to applicable law and third-party rights. Merely being compatible
-with Project Salieri AI does not place that work under this license.
+licensed, sold, transferred, or distributed by that creator under terms of
+the creator's choice, subject to applicable law and third-party rights.
+Merely being compatible with Project Salieri AI does not place that work
+under this license.
 
-This Section does not authorize Redistribution of the Software or a modified
-version of the Software, nor does it authorize distribution of a product,
-asset, or binary that contains or is derived from the Software or the Studio
-Hazama 714 VirtualBody assets.
+This Section does not authorize general Redistribution of the Software or a
+modified version of the Software, nor does it authorize distribution of a
+product, asset, or binary that contains or is derived from the Software or the
+Studio Hazama 714 VirtualBody assets, except for a Permitted Private Transfer
+under Section 7.
 
 5. Uses Requiring Prior Written Permission
 
@@ -162,13 +195,16 @@ d. incorporation of the Software, modified Software, or a Software-derived
    application, commercial AI, commercial robot, or other offering made
    available to third parties;
 e. Redistribution of the Software, modified source code, binaries, or source
-   supplied as part of a derivative work;
-f. granting or sublicensing any right in the Software to a third party;
-g. sponsorship or funding arrangements that are not Permitted Sponsorship;
-h. use that gives an Entity ownership, exclusivity, delivery rights,
+   supplied as part of a derivative work, other than a Permitted Private
+   Transfer under Section 7;
+f. transfer of the Software, modified Software, or a Software-derived binary
+   or asset to an Entity, including a transfer made free of charge;
+g. granting or sublicensing any right in the Software to a third party;
+h. sponsorship or funding arrangements that are not Permitted Sponsorship;
+i. use that gives an Entity ownership, exclusivity, delivery rights,
    intellectual-property rights, or material control over work performed with
    the Software; and
-i. any other use not expressly permitted by Sections 3 and 4.
+j. any other use not expressly permitted by Sections 3, 4, and 7.
 
 These requirements apply whether or not the proposed use is offered for a
 fee. If the permitted status of a use is genuinely unclear, the user should
@@ -179,36 +215,47 @@ request clarification before beginning that use.
 Project Salieri AI does not intend the Independent Creator revenue threshold
 to operate as an immediate penalty for a creator's success.
 
-If an Independent Creator exceeds the JPY 10,000,000 threshold after validly
-using the Software under this Version 1.1, that creator may continue the
-previously permitted use for up to 90 days after the end of the accounting or
-tax period in which the threshold was exceeded while seeking separate written
-permission or another applicable Project Salieri license.
+The JPY 10,000,000 threshold is determined after the close of the applicable
+annual accounting or tax period. If an Independent Creator validly using the
+Software under this Version 1.1 exceeds that threshold for a completed period,
+that creator may continue the previously permitted use for up to 90 days
+after the end of that period while seeking separate written permission or
+another applicable Project Salieri license.
 
-This transition period does not authorize new Redistribution, Entity use,
-commissioned work, or any other activity that was already outside the scope of
-Independent Creator Use.
+This transition period does not authorize new Entity use, commissioned work,
+public or commercial Redistribution, or any other activity that was already
+outside the scope of Independent Creator Use or Permitted Private Transfer.
 
-7. No Redistribution
+7. Redistribution and Permitted Private Transfer
 
-Except where Studio Hazama 714 gives explicit prior written permission, the
-Software, modified versions of the Software, binaries built from the
-Software, and source derived from the Software may not be redistributed.
+Except for a Permitted Private Transfer defined in Section 2, or where Studio
+Hazama 714 gives explicit prior written permission, the Software, modified
+versions of the Software, binaries built from the Software, and source derived
+from the Software may not be redistributed.
 
-For avoidance of doubt, distributing an Independent Compatible Work that does
-not contain or derive from the Software is not Redistribution of the Software
-for purposes of this license.
+A Permitted Private Transfer is intended to allow direct person-to-person
+sharing for individual research, DIY experimentation, and personal community
+activity. It does not permit public mirroring, public download distribution,
+marketplace distribution, mass distribution, transfer to an Entity, resale,
+productization, or transfer for organizational or commissioned use.
+
+For avoidance of doubt, distributing, selling, renting, or transferring an
+Independent Compatible Work that does not contain or derive from the Software
+is not Redistribution of the Software for purposes of this license. However,
+if the recipient is an Entity, that recipient does not thereby receive any
+right to use the Software itself; Entity use of the Software requires prior
+written permission under Section 5.
 
 8. Anti-Circumvention and Substance Over Form
 
 The permissions for Individuals and Independent Creators may not be obtained
 through an arrangement designed primarily to evade the Entity, revenue,
-Redistribution, or other restrictions of this license.
+Redistribution, transfer, or other restrictions of this license.
 
 The actual substance of an arrangement controls over its name or form.
 Without limitation, the following do not qualify for Independent Creator Use
-when they are used to obtain rights that an Entity or larger commercial
-operation would not otherwise have:
+or Permitted Private Transfer when they are used to obtain rights that an
+Entity or larger commercial operation would not otherwise have:
 
 a. placing an employee, contractor, sponsored person, nominee, or other
    Individual in front of an Entity-controlled project;
@@ -217,8 +264,12 @@ b. splitting one business or project among multiple persons, brands,
    revenue threshold;
 c. characterizing commissioned or controlled work as sponsorship;
 d. transferring the resulting work, control, or exclusive benefit to an
-   Entity through a side agreement; or
-e. using an Independent Creator as a conduit for Entity use of the Software.
+   Entity through a side agreement;
+e. using an Independent Creator as a conduit for Entity use of the Software;
+   or
+f. routing Software or Software-derived material through an Individual so
+   that an Entity can receive or exploit it without the permission otherwise
+   required by this license.
 
 Permitted Sponsorship that leaves creative and technical control with the
 Independent Creator is not prohibited by this Section.
@@ -229,6 +280,13 @@ Project Salieri AI welcomes independently created compatible bodies,
 mechanisms, 3D models, hardware, adapters, and other community works.
 Compatibility alone does not transfer ownership to Studio Hazama 714 and does
 not place an Independent Compatible Work under this license.
+
+An Independent Compatible Work may be licensed, sold, transferred, rented, or
+distributed to Individuals or Entities under terms chosen by its creator,
+subject to applicable law and third-party rights. Such a transaction does not
+itself grant the recipient any right to use the Project Salieri Software. An
+Entity that wishes to use the Software with that compatible work must obtain
+prior written permission under Section 5.
 
 A third-party work does not become an official, certified, or reference body,
 hardware platform, or distribution merely because it is compatible with the
